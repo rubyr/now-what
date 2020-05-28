@@ -2,9 +2,10 @@ import React, { useState, ReactElement } from 'react'
 
 import './Header.css'
 
-interface Props {}
+interface Props {
+}
 
-const Header = (props: Props): ReactElement => {
+const Header: React.FC<Props> = (): ReactElement => {
 
     const [ searchInput, updateSearchInput ] = useState("")
 
