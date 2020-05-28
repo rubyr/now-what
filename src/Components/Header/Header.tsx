@@ -1,4 +1,4 @@
-import React, { useState, ReactElement } from "react";
+import React, { useState, ReactElement, SyntheticEvent } from "react";
 import "./Header.css";
 
 interface Props {}
@@ -6,7 +6,8 @@ interface Props {}
 const Header: React.FC<Props> = (): ReactElement => {
   const [searchInput, updateSearchInput] = useState("");
 
-  const handleClick = (): void => {
+  const handleClick = (e: SyntheticEvent): void => {
+    e.preventDefault();
     clearSearch();
   };
 
