@@ -1,0 +1,19 @@
+.SearchForm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.SearchForm * {
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+}
+
+.SearchForm input {
+  margin-right: 10px;
+}
+
+.SearchForm button {
+  padding: 2px;
+}
