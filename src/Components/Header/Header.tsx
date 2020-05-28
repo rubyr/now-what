@@ -1,5 +1,4 @@
 import React, { useState, ReactElement } from 'react'
-
 import './Header.css'
 
 interface Props {
@@ -17,6 +16,7 @@ const Header: React.FC<Props> = (): ReactElement => {
     const clearSearch = (): void => {
         updateSearchInput('')
     }
+
 // if not doing SPA, maybe conditional render search bar when not at home screen?
 
     return (
