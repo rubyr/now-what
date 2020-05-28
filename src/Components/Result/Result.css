@@ -10,7 +10,3 @@
   height: 200px;
   background: #aaa;
 }
-
-.fakeImage::after {
-  content: "image goes here";
-}

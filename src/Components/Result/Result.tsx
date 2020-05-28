@@ -13,8 +13,9 @@ const Result = (props: Props) => {
   return (
     <Link to={link}>
       <div className="Result">
-        <h3>{Name}</h3>
-        <div className="fakeImage"></div>
+        <div className="fakeImage">
+          <h3>{Name}</h3>
+        </div>
       </div>
     </Link>
   );
