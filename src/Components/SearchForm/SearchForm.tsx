@@ -15,6 +15,7 @@ const SearchForm: React.FC<Props> = (props: Props) => {
       <input
         placeholder="Search for a title"
         onChange={(e) => setQuery(e.target.value)}
+        onKeyDown={(e) => e.key === "Enter" && props.searchTerm(query)}
         value={query}
       />
       <button onClick={() => props.searchTerm(query)}>Search</button>
