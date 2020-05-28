@@ -1,0 +1,35 @@
+header {
+    background-color: lightgray;
+    display: grid;
+    grid-template-columns: repeat(1fr 6);
+    height: 10vh;
+}
+
+h1 {
+    color: #fff;
+    text-align: left;
+    padding: 2%;
+    text-align: center;
+    font-size: 2.5rem;
+}
+
+.title-section {
+    background-color: #000;
+    grid-column: 1 / 2;
+    width: 70%;
+}
+
+.header-search {
+    font-size: 1.5rem;
+    display: inline-block;
+    grid-column: 5 / 6;
+    margin: 2%;
+}
+
+.header-search-button {
+    grid-column: 6 / 7 ;
+    margin: 4%;
+    border-radius: 5px;
+    font-size: 2rem;
+}
+
