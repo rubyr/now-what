@@ -23,9 +23,10 @@ function App(): ReactElement {
   }
   const searchTerm = async (searchTerm: string): Promise<searchResults[]> => {
     //needs to do a fetch call based on the search term and console log results
+    const corsAnywhere: string = `https://cors-anywhere.herokuapp.com/`
     const modifiedSearchTerm: string = searchTerm.split(" ").join("+");
     const response = await fetch(
-      `https://tastedive.com/api/similar?q=${modifiedSearchTerm}&verbose=1&k=372838-DavePern-7J59GJ8D&limit=5`
+      `${corsAnywhere}https://tastedive.com/api/similar?q=${modifiedSearchTerm}&verbose=1&k=372838-DavePern-7J59GJ8D&limit=5`
     );
     const data = await response
       .json()
