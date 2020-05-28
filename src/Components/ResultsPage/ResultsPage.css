@@ -1,0 +1,4 @@
+.ResultsPage {
+  display: flex;
+  flex-wrap: wrap;
+}
