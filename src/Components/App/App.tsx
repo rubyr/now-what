@@ -18,8 +18,11 @@ import ResultsPage from "../ResultsPage/ResultsPage";
 
 function App(): ReactElement {
   const [results, setResults] = useState([]);
+  const [ isLoading, setIsLoading ] = useState(false)
+
   const searchTerm = async (searchTerm: string) => {
     //needs to do a fetch call based on the search term and console log results
+    setIsLoading(true)
     const corsAnywhere: string = `https://cors-anywhere.herokuapp.com/`;
     const modifiedSearchTerm: string = searchTerm.split(" ").join("+");
     const response = await fetch(
@@ -28,6 +31,8 @@ function App(): ReactElement {
     const data = await response.json().catch((err) => console.log(err));
 
     setResults(data.Similar.Results);
+    setIsLoading(false)
+
   };
 
   return (
@@ -39,6 +44,7 @@ function App(): ReactElement {
           <SearchForm searchTerm={searchTerm} />
         </Route>
       </Switch>
+      {isLoading && <p>Finding matches...</p>}
       {results && <ResultsPage results={results} />}
     </div>
   );
