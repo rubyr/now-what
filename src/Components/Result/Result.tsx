@@ -9,21 +9,22 @@ interface Props {
 }
 
 const Result = (props: Props) => {
-    
-    const [ imageUrl, setImageUrl ] = useState('')
-
-    const getImage = async (): Promise<void> => {
-      const data = await wiki().page(props.data.Name)
-      .then(page => page.mainImage())
-      setImageUrl(data)
-    }
-
-    useEffect(() => { 
-      getImage()
-    })
-
   const { Name } = props.data;
   const link = `/title/${Name.replace(/\s/g, "+")}`;
+    
+  const [ imageUrl, setImageUrl ] = useState('')
+
+  const getImage = async (): Promise<void> => {
+    const url = await wiki().page(props.data.Name)
+    .then(page => page.mainImage())
+    .catch(err => console.error(err))
+    if (url) setImageUrl(url) 
+  }
+
+  useEffect(() => { 
+    getImage()
+  })
+
   return (
     <Link to={link}>
       <div className="Result">
