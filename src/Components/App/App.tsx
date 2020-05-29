@@ -18,26 +18,36 @@ import ResultsPage from "../ResultsPage/ResultsPage";
 
 function App(): ReactElement {
   const [results, setResults] = useState([]);
-  const [ isLoading, setIsLoading ] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<number | null>(null);
 
   const searchTerm = async (searchTerm: string) => {
     //needs to do a fetch call based on the search term and console log results
-    setIsLoading(true)
+    setError(null);
+    setIsLoading(true);
     const corsAnywhere: string = `https://cors-anywhere.herokuapp.com/`;
     const modifiedSearchTerm: string = searchTerm.split(" ").join("+");
-    const response = await fetch(
-      `${corsAnywhere}https://tastedive.com/api/similar?q=${modifiedSearchTerm}&verbose=1&k=372838-DavePern-7J59GJ8D&limit=5`
-    );
-    const data = await response.json().catch((err) => console.log(err));
+    const url = `${corsAnywhere}https://tastedive.com/api/similar?q=${modifiedSearchTerm}&verbose=1&k=372838-DavePern-7J59GJ8D&limit=5`;
 
-    setResults(data.Similar.Results);
-    setIsLoading(false)
+    const data = await fetch(url)
+      .then((response) =>
+        response.ok ? response.json() : setError(response.status)
+      )
+      .catch((err) => setError(err));
 
+    if (data) setResults(data.Similar.Results);
+    setIsLoading(false);
   };
 
   return (
     <div className="App">
       <Header />
+      {error && (
+        <h3 className="error">
+          We're sorry, but there seems to have been an issue. Please refresh the
+          page and try again. (Error code: {error})
+        </h3>
+      )}
       <Switch>
         <Route path="/search/:query"></Route>
         <Route exact path="/">
