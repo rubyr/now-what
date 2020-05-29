@@ -45,7 +45,9 @@ describe("App", () => {
     fireEvent.change(getByPlaceholderText(/title/i), {
       target: { value: "pulp fiction" },
     });
-    mocked(apiCalls).mockResolvedValueOnce(fetchedData.Similar.Results)
+    mocked(apiCalls).mockResolvedValueOnce(Promise.resolve(fetchedData.Similar.Results))
+    //make instance of response object 
+    //pass in data as its body 
     fireEvent.click(getByText("Go"));
     expect(getByText("Fight Club")).toBeInTheDocument();
   });
