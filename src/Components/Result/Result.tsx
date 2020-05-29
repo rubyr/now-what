@@ -45,10 +45,8 @@ const Result = (props: Props) => {
   return (
     <Link to={link}>
       <div className="Result">
-        {/* <div className="fakeImage"> */}
         <h3>{Name}</h3>
         <img src={imageUrl} alt={Name} className="result-card-image" />
-        {/* </div> */}
       </div>
     </Link>
   );
