@@ -1,5 +1,6 @@
 import React, { useState, ReactElement, SyntheticEvent } from "react";
 import "./Header.css";
+import { NavLink, Link } from "react-router-dom";
 
 interface Props {}
 
@@ -19,9 +20,12 @@ const Header: React.FC<Props> = (): ReactElement => {
 
   return (
     <header>
-      <section className="title-section">
-        <h1>Now What!?</h1>
-      </section>
+      <Link to="/">
+        <section className="title-section">
+          <h1>Now What!?</h1>
+        </section>
+      </Link>
+      <NavLink to="/favorites">Favorites</NavLink>
       <form className="header-form">
         <input
           type="text"
