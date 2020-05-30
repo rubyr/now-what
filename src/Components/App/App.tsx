@@ -20,7 +20,6 @@ function App(): ReactElement {
   const [results, setResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<number | null>(null);
-
   const [ searchItem, setSearchItem ] = useState([])
 
   const searchTerm = async (searchTerm: string) => {
@@ -36,8 +35,6 @@ function App(): ReactElement {
         response.ok ? response.json() : setError(response.status)
       )
       .catch((err) => setError(err));
-    // const searchItem: searchResult = data.Similar.Info
-    // if (data) setResults([...data.Similar.Info, ...data.Similar.Results])
     if (data) {
       setResults(data.Similar.Results);
       setSearchItem(data.Similar.Info)
