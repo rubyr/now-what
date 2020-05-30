@@ -19,7 +19,6 @@ const ResultsPage = (props: Props) => {
     />
   ));
   const searchItem = results.shift()
- 
   return (
     <div className="ResultsPage">
       <section className="search-item-display">
