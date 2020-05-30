@@ -21,6 +21,8 @@ function App(): ReactElement {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<number | null>(null);
 
+  const [ searchItem, setSearchItem ] = useState([])
+
   const searchTerm = async (searchTerm: string) => {
     //needs to do a fetch call based on the search term and console log results
     setError(null);
@@ -34,8 +36,12 @@ function App(): ReactElement {
         response.ok ? response.json() : setError(response.status)
       )
       .catch((err) => setError(err));
-
-    if (data) setResults(data.Similar.Results);
+    // const searchItem: searchResult = data.Similar.Info
+    // if (data) setResults([...data.Similar.Info, ...data.Similar.Results])
+    if (data) {
+      setResults(data.Similar.Results);
+      setSearchItem(data.Similar.Info)
+    }
     setIsLoading(false);
   };
 
@@ -55,7 +61,7 @@ function App(): ReactElement {
         </Route>
       </Switch>
       {isLoading && <p>Finding matches...</p>}
-      {results && <ResultsPage results={results} />}
+      {results.length !== 0 && <ResultsPage results={results} searchItem={searchItem}/>}
     </div>
   );
 }
