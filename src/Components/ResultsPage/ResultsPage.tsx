@@ -8,7 +8,9 @@ interface Props {
 }
 
 const ResultsPage = (props: Props) => {
-  const results = props.results.map((r) => <Result key={r.yID} data={r} />);
+  const results = props.results.map((r) => (
+    <Result key={r.yID} data={r} toggleFavorite={() => {}} />
+  ));
   return <div className="ResultsPage">{results}</div>;
 };
 
