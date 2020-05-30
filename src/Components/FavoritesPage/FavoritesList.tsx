@@ -30,6 +30,7 @@ const FavoritesList = (props: Props) => {
       results={results}
       toggleFavorite={props.toggleFavorite}
       favorites={props.favorites}
+      isFavoriteView={true}
     />
   );
 };

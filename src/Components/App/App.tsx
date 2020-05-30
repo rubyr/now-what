@@ -80,6 +80,7 @@ function App(): ReactElement {
               results={results}
               toggleFavorite={toggleFavorite}
               favorites={favorites}
+              isFavoriteView={false}
             />
           )}
         </Route>

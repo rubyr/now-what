@@ -7,6 +7,7 @@ interface Props {
   results: searchResult[];
   toggleFavorite: (id: string) => void;
   favorites: string[];
+  isFavoriteView: boolean;
 }
 
 const ResultsPage = (props: Props) => {
@@ -19,16 +20,26 @@ const ResultsPage = (props: Props) => {
     />
   ));
   const searchItem = results.shift()
-  return (
-    <div className="ResultsPage">
-      <section className="search-item-display">
-        <h2>Main Title</h2>
+  if (!props.isFavoriteView) {
+    return (
+      <div className="ResultsPage">
+       <section className="search-item-display">
+          <h2>Main Title</h2>
+          {searchItem}
+        </section>
+        <h2>Related Titles</h2>
+        {results}
+      </div>
+    )
+  } else {
+    return (
+      <div className="ResultsPage">
+        <h2>Favorites</h2>
         {searchItem}
-      </section>
-      <h2>Related Titles</h2>
-      {results}
-    </div>
-  )
+        {results}
+      </div>
+    )
+  }
 };
 
 export default ResultsPage;
