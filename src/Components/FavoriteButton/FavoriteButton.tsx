@@ -3,10 +3,11 @@ import "./FavoriteButton.css";
 
 interface Props {
   toggleFavorite: () => void;
+  favorite: boolean;
 }
 
 const FavoriteButton = (props: Props) => {
-  const [imgSrc, setImgSrc] = useState("");
+  const [imgSrc, setImgSrc] = useState(props.favorite ? "-fill" : "");
   const toggleFavorite = () => {
     props.toggleFavorite();
     const newClass = imgSrc ? "" : "-fill";

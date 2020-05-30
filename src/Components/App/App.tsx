@@ -11,6 +11,7 @@ import SearchForm from "../SearchForm/SearchForm";
 import Header from "../Header/Header";
 import { searchResult } from "../../types";
 import ResultsPage from "../ResultsPage/ResultsPage";
+import FavoritesList from "../FavoritesPage/FavoritesList";
 
 //state should be empty
 //eventually state will hold the user's search term
@@ -20,6 +21,7 @@ function App(): ReactElement {
   const [results, setResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<number | null>(null);
+  const [favorites, setFavorites] = useState<string[]>([]);
 
   const searchTerm = async (searchTerm: string) => {
     //needs to do a fetch call based on the search term and console log results
@@ -39,6 +41,11 @@ function App(): ReactElement {
     setIsLoading(false);
   };
 
+  const toggleFavorite = (id: string): void => {
+    if (!favorites.includes(id)) setFavorites([...favorites, id]);
+    else setFavorites(favorites.filter((f) => f !== id));
+  };
+
   return (
     <div className="App">
       <Header />
@@ -49,13 +56,25 @@ function App(): ReactElement {
         </h3>
       )}
       <Switch>
+        <Route path="/favorites">
+          <FavoritesList
+            favorites={favorites}
+            toggleFavorite={toggleFavorite}
+          />
+        </Route>
         <Route path="/search/:query"></Route>
         <Route exact path="/">
           <SearchForm searchTerm={searchTerm} />
+          {isLoading && <p>Finding matches...</p>}
+          {results && (
+            <ResultsPage
+              results={results}
+              toggleFavorite={toggleFavorite}
+              favorites={favorites}
+            />
+          )}
         </Route>
       </Switch>
-      {isLoading && <p>Finding matches...</p>}
-      {results && <ResultsPage results={results} />}
     </div>
   );
 }

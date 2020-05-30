@@ -8,10 +8,11 @@ import FavoriteButton from "../FavoriteButton/FavoriteButton";
 interface Props {
   data: searchResult;
   toggleFavorite: (id: string) => void;
+  favorite: boolean;
 }
 
 const Result = (props: Props) => {
-  const { Name, wUrl, yID } = props.data;
+  const { Name, wUrl, Type } = props.data;
   const link = `/title/${Name.replace(/\s/g, "+")}`;
 
   const [imageUrl, setImageUrl] = useState("");
@@ -51,7 +52,10 @@ const Result = (props: Props) => {
 
         <img src={imageUrl} alt={Name} className="result-card-image" />
       </Link>
-      <FavoriteButton toggleFavorite={() => props.toggleFavorite(yID)} />
+      <FavoriteButton
+        toggleFavorite={() => props.toggleFavorite(Type + ":" + Name)}
+        favorite={props.favorite}
+      />
     </div>
   );
 };
