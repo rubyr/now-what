@@ -8,5 +8,6 @@
 .result-card-image {
   width: 140px;
   height: 200px;
-  background: #aaa;
+  background: none;
+  object-fit: contain;
 }
