@@ -54,7 +54,7 @@ function App(): ReactElement {
   };
 
   return (
-    <div className="App">
+    <main className="App">
       <Header />
       {error && (
         <h3 className="error">
@@ -82,7 +82,7 @@ function App(): ReactElement {
           )}
         </Route>
       </Switch>
-    </div>
+    </main>
   );
 }
 

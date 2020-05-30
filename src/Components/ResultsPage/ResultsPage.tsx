@@ -18,7 +18,7 @@ const ResultsPage = (props: Props) => {
       favorite={props.favorites.includes(`${r.Type}:${r.Name}`)}
     />
   ));
-  return <div className="ResultsPage">{results}</div>;
+  return <section className="ResultsPage">{results}</section>;
 };
 
 export default ResultsPage;
