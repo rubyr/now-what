@@ -1,10 +1,4 @@
-import React, {
-  ReactElement,
-  useEffect,
-  MouseEvent,
-  SyntheticEvent,
-  useState,
-} from "react";
+import React, { ReactElement, useEffect, useState } from "react";
 import "./App.css";
 import { Switch, Route } from "react-router-dom";
 import SearchForm from "../SearchForm/SearchForm";
@@ -18,10 +12,28 @@ import FavoritesList from "../FavoritesPage/FavoritesList";
 //need another method in this function maybe that will be passed to search form
 
 function App(): ReactElement {
-  const [results, setResults] = useState([]);
+  const [results, setResults] = useState<searchResult[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<number | null>(null);
   const [favorites, setFavorites] = useState<string[]>([]);
+
+  useEffect(() => {
+    // load favorites on startup
+    const lsFaves = localStorage.getItem("favorites");
+    if (lsFaves) {
+      setFavorites(JSON.parse(lsFaves));
+    }
+  }, []);
+
+  useEffect(() => {
+    // save favorites when updated
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+  }, [favorites]);
+
+  const toggleFavorite = (id: string): void => {
+    if (!favorites.includes(id)) setFavorites([...favorites, id]);
+    else setFavorites(favorites.filter((f) => f !== id));
+  };
 
   const searchTerm = async (searchTerm: string) => {
     //needs to do a fetch call based on the search term and console log results
@@ -39,11 +51,6 @@ function App(): ReactElement {
 
     if (data) setResults(data.Similar.Results);
     setIsLoading(false);
-  };
-
-  const toggleFavorite = (id: string): void => {
-    if (!favorites.includes(id)) setFavorites([...favorites, id]);
-    else setFavorites(favorites.filter((f) => f !== id));
   };
 
   return (
