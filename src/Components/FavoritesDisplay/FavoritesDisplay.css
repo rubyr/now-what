@@ -1,0 +1,15 @@
+.favorites-display {
+        display: flex;
+        flex-wrap: wrap;
+}
+
+.favorites-display h2 {
+    width: 100%;
+    text-align: left;
+    margin: 1% 2%;
+  }
+
+  .favorites-section {
+      /* width: 100%; */
+      margin: 2% 
+  }
