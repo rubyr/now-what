@@ -34,6 +34,7 @@ const Header: React.FC<Props> = (): ReactElement => {
           className="header-search"
           value={searchInput}
           onChange={(e) => updateSearchInput(e.target.value)}
+          aria-label="search"
         />
         <button className="header-search-button" onClick={handleClick}>
           Search
