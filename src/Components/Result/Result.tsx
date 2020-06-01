@@ -9,6 +9,7 @@ interface Props {
   data: searchResult;
   toggleFavorite: (id: string) => void;
   favorite: boolean;
+  type: string;
 }
 
 const Result = (props: Props) => {
