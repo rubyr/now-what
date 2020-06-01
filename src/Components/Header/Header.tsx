@@ -1,6 +1,6 @@
 import React, { useState, ReactElement, SyntheticEvent } from "react";
 import "./Header.css";
-import { NavLink, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 interface Props {}
 

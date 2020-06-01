@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { searchResult } from '../../types'
-import './TitlePage.css'
+import { searchResult } from "../../types";
+import "./TitlePage.css";
 // import youtube from '../../../public/images/youtube_logo.png'
 
 interface Props {
@@ -10,21 +10,29 @@ interface Props {
 const TitlePage: React.FC<Props> = (props: Props) => {
   // const actualTitle: string = props.name.split('+').join(' ')
   // const [title, setTitle] = useState(actualTitle);
-  //don't need to set title 
-  //do I really need to set state? 
+  //don't need to set title
+  //do I really need to set state?
   // setTitle(props.name.split('+').join(' '))
   return (
     <section className="title-page">
       <aside className="title-overview">
-      <h4>{props.item.Name}</h4>
-      <figure className="result-card-image-placeholder"></figure>
-      <a href={props.item.yUrl} target="_blank" rel="noopener noreferrer"><img className="youtube-link" src='/images/youtube_logo.png' alt="youtube-logo"></img></a>
+        <h4>{props.item.Name}</h4>
+        <figure className="result-card-image-placeholder"></figure>
+        <a href={props.item.yUrl} target="_blank" rel="noopener noreferrer">
+          <img
+            className="youtube-link"
+            src="/images/youtube_logo.png"
+            alt="youtube-logo"
+          ></img>
+        </a>
       </aside>
       <main className="title-detailed-info">
         <p>{props.item.wTeaser}</p>
-        <p className="wiki-link" ><a href={props.item.wUrl} target="_blank" rel="noopener noreferrer">Read more...</a></p>
-
-
+        <p className="wiki-link">
+          <a href={props.item.wUrl} target="_blank" rel="noopener noreferrer">
+            Read more...
+          </a>
+        </p>
       </main>
     </section>
   );
@@ -40,4 +48,3 @@ export default TitlePage;
 // wUrl: "https://en.wikipedia.org/wiki/12_Angry_Men_(1957_film)"
 // yID: "_13J_9B5jEk"
 // yUrl: "https://www.youtube-nocookie.com/embed/_13J_9B5jEk"
-
