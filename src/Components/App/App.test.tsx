@@ -46,10 +46,11 @@ describe("App", () => {
       target: { value: "pulp fiction" },
     });
     fireEvent.click(getByPlaceholderText("Search for a title"));
-    mocked(apiCalls).mockImplementation(()=> fetchedData);
+    mocked(apiCalls).mockImplementation(()=> Promise.resolve(fetchedData));
     //make instance of response object
     //pass in data as its body
     //?
+    // is this throwing an error because apicalls returns a promise but fetched data isn't a promise? 
      waitFor(() => expect(getByText("Fight Club")).toBeInTheDocument());
   });
 

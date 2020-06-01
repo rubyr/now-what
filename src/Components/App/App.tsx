@@ -7,6 +7,7 @@ import { searchResult } from "../../types";
 import ResultsPage from "../ResultsPage/ResultsPage";
 import { apiCalls } from "../../apiCalls";
 import FavoritesList from "../FavoritesPage/FavoritesList";
+import TitlePage from "../TitlePage/TitlePage";
 
 //state should be empty
 //eventually state will hold the user's search term
@@ -14,6 +15,7 @@ import FavoritesList from "../FavoritesPage/FavoritesList";
 
 function App(): ReactElement {
   const [results, setResults] = useState<searchResult[]>([]);
+  const [selectedTitle, setSelectedTitle] = useState<{}>({});
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<number | null>(null);
   const [favorites, setFavorites] = useState<string[]>([]);
@@ -87,6 +89,9 @@ function App(): ReactElement {
               favorites={favorites}
             />
           )}
+        </Route>
+        <Route path="/title/:name">
+          <TitlePage />
         </Route>
       </Switch>
     </main>
