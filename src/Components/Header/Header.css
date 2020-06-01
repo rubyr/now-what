@@ -75,14 +75,14 @@ h1 {
   height: 0;
   transform: scaleY(0);
   transform-origin: 50% 0%;
-  transition: transform .3s linear, height .3s step-end;
+  transition: transform .3s, height .3s step-end;
 }
 
 .header-form.show {
   height: 40px;
   width: 100%;
   transform: scaleY(1);
-  transition: transform .3s linear, width 0s;
+  transition: transform .3s, width 0s;
 }
 
 @media all and (min-width: 600px) {
@@ -92,11 +92,11 @@ h1 {
     width: 0px;
     transform: scaleX(0);
     transform-origin: 100% 50%;
-    transition: transform .3s linear, width .3s step-end;
+    transition: transform .3s, width .3s step-end;
   }
   .header-form.show {
     width: 100%;
     transform: scaleX(1);
-    transition: transform .3s linear, width 0s;
+    transition: transform .3s, width 0s;
   }
 }

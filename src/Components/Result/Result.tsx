@@ -4,6 +4,7 @@ import "./Result.css";
 import { Link } from "react-router-dom";
 import wiki from "wikijs";
 import FavoriteButton from "../FavoriteButton/FavoriteButton";
+import { getWikiImage } from "../../apiCalls";
 
 interface Props {
   data: searchResult;
@@ -19,21 +20,13 @@ const Result = (props: Props) => {
 
   const getImage = async (): Promise<void> => {
     try {
-      const title = decodeURI(`${wUrl.split("/").pop()}`);
+      const title = decodeURI(wUrl.split("/").pop() as string);
 
-      const url = await wiki()
-        .page(title)
-        .then((page) => page.mainImage())
-        .catch((err) => console.error(err));
-
+      const url = await getWikiImage(title);
       if (url) setImageUrl(url);
     } catch {
       try {
-        const url = await wiki()
-          .page(Name)
-          .then((page) => page.mainImage())
-          .catch((err) => console.error(err));
-
+        const url = await getWikiImage(Name);
         if (url) setImageUrl(url);
       } catch (e) {
         console.error(e);
