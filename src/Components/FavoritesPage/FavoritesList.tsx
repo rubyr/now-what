@@ -13,9 +13,7 @@ const FavoritesList = (props: Props) => {
 
   useEffect(() => {
     async function fetchData() {
-      const { Similar } = await fetchFavorites(props.favorites).catch(
-        console.error // might want to do something better here
-      );
+      const { Similar } = await fetchFavorites(props.favorites);
 
       if (Similar) setResults(Similar.Info);
     }

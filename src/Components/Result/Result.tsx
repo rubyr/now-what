@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { searchResult } from "../../types";
 import "./Result.css";
 import { Link } from "react-router-dom";
-import wiki from "wikijs";
 import FavoriteButton from "../FavoriteButton/FavoriteButton";
 import { getWikiImage } from "../../apiCalls";
 
