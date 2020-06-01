@@ -16,9 +16,22 @@ const ResultsPage = (props: Props) => {
       data={r}
       toggleFavorite={props.toggleFavorite}
       favorite={props.favorites.includes(`${r.Type}:${r.Name}`)}
+      type={r.Type}
     />
   ));
-  return <section className="ResultsPage">{results}</section>;
+  const searchItem = results.shift()
+
+
+  return (
+    <div className="ResultsPage">
+      <section className="search-item-display">
+         <h2>Main Title</h2>
+         {searchItem}
+      </section>
+       <h2>Related Titles</h2>
+       {results}
+    </div>
+  )
 };
 
 export default ResultsPage;

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import ResultsPage from "../ResultsPage/ResultsPage";
+import FavoritesDisplay from "../FavoritesDisplay/FavoritesDisplay";
 import { searchResult } from "../../types";
 
 interface Props {
@@ -26,7 +26,7 @@ const FavoritesList = (props: Props) => {
   }, [props.favorites]);
 
   return props.favorites.length ? (
-    <ResultsPage
+    <FavoritesDisplay
       results={results}
       toggleFavorite={props.toggleFavorite}
       favorites={props.favorites}
