@@ -1,5 +1,5 @@
 import React from "react";
-import { render, fireEvent } from "@testing-library/react";
+import { render, fireEvent, waitFor } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 import { act } from "react-dom/test-utils";
 import App from "./App";
@@ -23,19 +23,19 @@ describe("App", () => {
   });
 
   it("should do nothing if a user searches an empty string or nothing", () => {
-    const { getByText } = render(
+    const { getByText, getByPlaceholderText } = render(
       <BrowserRouter>
         <App />
       </BrowserRouter>
     );
 
-    fireEvent.click(getByText("Go"));
+    fireEvent.click(getByPlaceholderText("Search for a title"));
     //what should happen here?
     ////////this expect statement needs to be fixed
     expect();
   });
 
-  it.only("should display search results if the search term isn't an empty string", () => {
+  it("should display search results if the search term isn't an empty string", () => {
     const { getByText, getByPlaceholderText } = render(
       <BrowserRouter>
         <App />
@@ -45,13 +45,12 @@ describe("App", () => {
     fireEvent.change(getByPlaceholderText(/title/i), {
       target: { value: "pulp fiction" },
     });
-    mocked(apiCalls).mockResolvedValueOnce(
-      Promise.resolve(fetchedData.Similar.Results)
-    );
+    fireEvent.click(getByPlaceholderText("Search for a title"));
+    mocked(apiCalls).mockImplementation(()=> fetchedData);
     //make instance of response object
     //pass in data as its body
-    fireEvent.click(getByText("Go"));
-    expect(getByText("Fight Club")).toBeInTheDocument();
+    //?
+     waitFor(() => expect(getByText("Fight Club")).toBeInTheDocument());
   });
 
   //if search button is clicked and there is a search term, should find relevant search items
