@@ -62,6 +62,12 @@ function App(): ReactElement {
     setIsLoading(false);
   };
 
+  //how would I do this in react?
+  //that's a good question lol
+  //I'm just trying to get the component to even show up.
+  //I would probably use match params somehow to connect the current URL with the actual url
+  //could find the name that in the app state that actually matches the current url
+
   return (
     <main className="App">
       <Header />
@@ -79,6 +85,19 @@ function App(): ReactElement {
           />
         </Route>
         <Route path="/search/:query"></Route>
+        {results && <Route
+          path="/title/:name"
+          render={({ match }) => {
+            const { name } = match.params;
+            const regularName = name.split('+').join(' ')
+            console.log(results);
+            const matchedName: searchResult | any = results.find((result) =>
+              result.Name.includes(regularName)
+            );
+            console.log(matchedName)
+            return <TitlePage item={matchedName}/>;
+          }}
+        ></Route>}
         <Route exact path="/">
           <SearchForm searchTerm={searchTerm} />
           {isLoading && <p>Finding matches...</p>}
@@ -89,9 +108,6 @@ function App(): ReactElement {
               favorites={favorites}
             />
           )}
-        </Route>
-        <Route path="/title/:name">
-          <TitlePage />
         </Route>
       </Switch>
     </main>
