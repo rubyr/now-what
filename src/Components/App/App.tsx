@@ -15,7 +15,6 @@ import TitlePage from "../TitlePage/TitlePage";
 
 function App(): ReactElement {
   const [results, setResults] = useState<searchResult[]>([]);
-  const [selectedTitle, setSelectedTitle] = useState<{}>({});
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<number | null>(null);
   const [favorites, setFavorites] = useState<string[]>([]);
