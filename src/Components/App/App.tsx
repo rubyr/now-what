@@ -5,7 +5,9 @@ import SearchForm from "../SearchForm/SearchForm";
 import Header from "../Header/Header";
 import { searchResult } from "../../types";
 import ResultsPage from "../ResultsPage/ResultsPage";
+import { apiCalls } from "../../apiCalls";
 import FavoritesList from "../FavoritesPage/FavoritesList";
+import TitlePage from "../TitlePage/TitlePage";
 
 //state should be empty
 //eventually state will hold the user's search term
@@ -13,6 +15,7 @@ import FavoritesList from "../FavoritesPage/FavoritesList";
 
 function App(): ReactElement {
   const [results, setResults] = useState<searchResult[]>([]);
+  const [selectedTitle, setSelectedTitle] = useState<{}>({});
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<number | null>(null);
   const [favorites, setFavorites] = useState<string[]>([]);
@@ -39,19 +42,31 @@ function App(): ReactElement {
     //needs to do a fetch call based on the search term and console log results
     setError(null);
     setIsLoading(true);
-    const corsAnywhere: string = `https://cors-anywhere.herokuapp.com/`;
-    const modifiedSearchTerm: string = searchTerm.split(" ").join("+");
-    const url = `${corsAnywhere}https://tastedive.com/api/similar?q=${modifiedSearchTerm}&verbose=1&k=372838-DavePern-7J59GJ8D`;
+    // const corsAnywhere: string = `https://cors-anywhere.herokuapp.com/`;
+    // const modifiedSearchTerm: string = searchTerm.split(" ").join("+");
+    // const url = `${corsAnywhere}https://tastedive.com/api/similar?q=${modifiedSearchTerm}&verbose=1&k=372838-DavePern-7J59GJ8D&limit=5`;
 
-    const data = await fetch(url)
+    // const data = await fetch(url)
+    // let data = await apiCalls(searchTerm);
+    apiCalls(searchTerm)
       .then((response) =>
         response.ok ? response.json() : setError(response.status)
       )
+      .then((response) =>
+        response ? setResults(response.Similar.Results) : null
+      )
       .catch((err) => setError(err));
+    // console.log(data)
 
-    if (data) setResults(data.Similar.Results);
+    // if (data) setResults(data);
     setIsLoading(false);
   };
+
+  //how would I do this in react?
+  //that's a good question lol
+  //I'm just trying to get the component to even show up.
+  //I would probably use match params somehow to connect the current URL with the actual url
+  //could find the name that in the app state that actually matches the current url
 
   return (
     <main className="App">
@@ -70,6 +85,19 @@ function App(): ReactElement {
           />
         </Route>
         <Route path="/search/:query"></Route>
+        {results && <Route
+          path="/title/:name"
+          render={({ match }) => {
+            const { name } = match.params;
+            const regularName = name.split('+').join(' ')
+            console.log(results);
+            const matchedName: searchResult | any = results.find((result) =>
+              result.Name.includes(regularName)
+            );
+            console.log(matchedName)
+            return <TitlePage item={matchedName}/>;
+          }}
+        ></Route>}
         <Route exact path="/">
           <SearchForm searchTerm={searchTerm} />
           {isLoading && <p>Finding matches...</p>}
