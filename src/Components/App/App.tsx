@@ -1,10 +1,4 @@
-import React, {
-  ReactElement,
-  useEffect,
-  MouseEvent,
-  SyntheticEvent,
-  useState,
-} from "react";
+import React, { ReactElement, useEffect, useState } from "react";
 import "./App.css";
 import { Switch, Route } from "react-router-dom";
 import SearchForm from "../SearchForm/SearchForm";
@@ -12,15 +6,35 @@ import Header from "../Header/Header";
 import { searchResult } from "../../types";
 import ResultsPage from "../ResultsPage/ResultsPage";
 import { apiCalls } from "../../apiCalls";
+import FavoritesList from "../FavoritesPage/FavoritesList";
 
 //state should be empty
 //eventually state will hold the user's search term
 //need another method in this function maybe that will be passed to search form
 
 function App(): ReactElement {
-  const [results, setResults] = useState([]);
+  const [results, setResults] = useState<searchResult[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<number | null>(null);
+  const [favorites, setFavorites] = useState<string[]>([]);
+
+  useEffect(() => {
+    // load favorites on startup
+    const lsFaves = localStorage.getItem("favorites");
+    if (lsFaves) {
+      setFavorites(JSON.parse(lsFaves));
+    }
+  }, []);
+
+  useEffect(() => {
+    // save favorites when updated
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+  }, [favorites]);
+
+  const toggleFavorite = (id: string): void => {
+    if (!favorites.includes(id)) setFavorites([...favorites, id]);
+    else setFavorites(favorites.filter((f) => f !== id));
+  };
 
   const searchTerm = async (searchTerm: string) => {
     //needs to do a fetch call based on the search term and console log results
@@ -47,7 +61,7 @@ function App(): ReactElement {
   };
 
   return (
-    <div className="App">
+    <main className="App">
       <Header />
       {error && (
         <h3 className="error">
@@ -56,14 +70,26 @@ function App(): ReactElement {
         </h3>
       )}
       <Switch>
+        <Route path="/favorites">
+          <FavoritesList
+            favorites={favorites}
+            toggleFavorite={toggleFavorite}
+          />
+        </Route>
         <Route path="/search/:query"></Route>
         <Route exact path="/">
           <SearchForm searchTerm={searchTerm} />
+          {isLoading && <p>Finding matches...</p>}
+          {results && (
+            <ResultsPage
+              results={results}
+              toggleFavorite={toggleFavorite}
+              favorites={favorites}
+            />
+          )}
         </Route>
       </Switch>
-      {isLoading && <p>Finding matches...</p>}
-      {results && <ResultsPage results={results} />}
-    </div>
+    </main>
   );
 }
 

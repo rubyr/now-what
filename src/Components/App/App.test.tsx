@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import React from "react";
 import { render, fireEvent } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 import { act } from "react-dom/test-utils";
@@ -45,9 +45,11 @@ describe("App", () => {
     fireEvent.change(getByPlaceholderText(/title/i), {
       target: { value: "pulp fiction" },
     });
-    mocked(apiCalls).mockResolvedValueOnce(Promise.resolve(fetchedData.Similar.Results))
-    //make instance of response object 
-    //pass in data as its body 
+    mocked(apiCalls).mockResolvedValueOnce(
+      Promise.resolve(fetchedData.Similar.Results)
+    );
+    //make instance of response object
+    //pass in data as its body
     fireEvent.click(getByText("Go"));
     expect(getByText("Fight Club")).toBeInTheDocument();
   });

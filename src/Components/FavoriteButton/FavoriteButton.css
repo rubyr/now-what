@@ -1,0 +1,18 @@
+.FavoriteButton {
+  position: absolute;
+  right: 10px;
+  border: none;
+  background: none;
+}
+
+.FavoriteButton * {
+  pointer-events: none;
+}
+
+.favorite * {
+  fill: white;
+}
+
+.favorite.toggled * {
+  fill: red;
+}
