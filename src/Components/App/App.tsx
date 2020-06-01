@@ -15,7 +15,6 @@ import TitlePage from "../TitlePage/TitlePage";
 
 function App(): ReactElement {
   const [results, setResults] = useState<searchResult[]>([]);
-  const [selectedTitle, setSelectedTitle] = useState<{}>({});
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<number | null>(null);
   const [favorites, setFavorites] = useState<string[]>([]);
@@ -42,9 +41,9 @@ function App(): ReactElement {
     //needs to do a fetch call based on the search term and console log results
     setError(null);
     setIsLoading(true);
-    // const corsAnywhere: string = `https://cors-anywhere.herokuapp.com/`;
-    // const modifiedSearchTerm: string = searchTerm.split(" ").join("+");
-    // const url = `${corsAnywhere}https://tastedive.com/api/similar?q=${modifiedSearchTerm}&verbose=1&k=372838-DavePern-7J59GJ8D&limit=5`;
+    const corsAnywhere: string = `https://cors-anywhere.herokuapp.com/`;
+    const modifiedSearchTerm: string = searchTerm.split(" ").join("+");
+    const url = `${corsAnywhere}https://tastedive.com/api/similar?q=${modifiedSearchTerm}&verbose=1&k=372838-DavePern-7J59GJ8D&limit=5`;
 
     // const data = await fetch(url)
     // let data = await apiCalls(searchTerm);
@@ -52,13 +51,11 @@ function App(): ReactElement {
       .then((response) =>
         response.ok ? response.json() : setError(response.status)
       )
-      .then((response) =>
-        response ? setResults(response.Similar.Results) : null
+      .then((response) => 
+        response ? setResults([...response.Similar.Info, ...response.Similar.Results]) : null
       )
       .catch((err) => setError(err));
-    // console.log(data)
-
-    // if (data) setResults(data);
+  
     setIsLoading(false);
   };
 
@@ -103,7 +100,7 @@ function App(): ReactElement {
         <Route exact path="/">
           <SearchForm searchTerm={searchTerm} />
           {isLoading && <p>Finding matches...</p>}
-          {results && (
+          {results.length !== 0 && (
             <ResultsPage
               results={results}
               toggleFavorite={toggleFavorite}

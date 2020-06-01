@@ -2,3 +2,14 @@
   display: flex;
   flex-wrap: wrap;
 }
+
+.search-item-display {
+  width: 100%;
+  display: block;
+}
+
+.ResultsPage h2 {
+  width: 100%;
+  text-align: left;
+  margin: 1% 2%;
+}
