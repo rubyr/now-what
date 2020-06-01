@@ -15,6 +15,7 @@ const SearchForm: React.FC<Props> = (props: Props) => {
         onChange={(e) => setQuery(e.target.value)}
         onKeyDown={(e) => e.key === "Enter" && props.searchTerm(query)}
         value={query}
+        aria-label="Title Search"
       />
       <button onClick={() => props.searchTerm(query)}>Search</button>
     </form>

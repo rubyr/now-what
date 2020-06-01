@@ -25,13 +25,15 @@ const FavoritesList = (props: Props) => {
     fetchData();
   }, [props.favorites]);
 
-  return (
+  return props.favorites.length ? (
     <ResultsPage
       results={results}
       toggleFavorite={props.toggleFavorite}
       favorites={props.favorites}
       isFavoriteView={true}
     />
+  ) : (
+    <p>Nothing favorited yet. Add some to see them here!</p>
   );
 };
 

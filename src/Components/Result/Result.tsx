@@ -46,7 +46,7 @@ const Result = (props: Props) => {
   });
 
   return (
-    <div className="Result">
+    <article className="Result">
       <Link to={link}>
         <h3>{Name}</h3>
 
@@ -56,7 +56,7 @@ const Result = (props: Props) => {
         toggleFavorite={() => props.toggleFavorite(Type + ":" + Name)}
         favorite={props.favorite}
       />
-    </div>
+    </article>
   );
 };
 
