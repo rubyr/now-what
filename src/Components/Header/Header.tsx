@@ -6,6 +6,7 @@ interface Props {}
 
 const Header: React.FC<Props> = (): ReactElement => {
   const [searchInput, updateSearchInput] = useState("");
+  const [showSearch, updateShowSearch] = useState(false);
 
   const handleClick = (e: SyntheticEvent): void => {
     e.preventDefault();
@@ -25,21 +26,30 @@ const Header: React.FC<Props> = (): ReactElement => {
           <h1>Now What!?</h1>
         </section>
       </Link>
-      <NavLink to="/favorites">Favorites</NavLink>
-      <form className="header-form">
-        <input
-          type="text"
-          name="search"
-          placeholder="search..."
-          className="header-search"
-          value={searchInput}
-          onChange={(e) => updateSearchInput(e.target.value)}
-          aria-label="search"
+      <section className="actions">
+        <Link to="/favorites" className="navlink">
+          <p style={{ letterSpacing: "-1px" }}>FAVORITES</p>
+        </Link>
+        <form className={`header-form${showSearch ? " show" : ""}`}>
+          <input
+            type="text"
+            name="search"
+            placeholder="search..."
+            className="header-search"
+            value={searchInput}
+            onChange={(e) => updateSearchInput(e.target.value)}
+            aria-label="search"
+          />
+          <button className="header-search-button" onClick={handleClick}>
+            Search
+          </button>
+        </form>
+        <img
+          src="images/search.svg"
+          alt="search"
+          onClick={() => updateShowSearch(!showSearch)}
         />
-        <button className="header-search-button" onClick={handleClick}>
-          Search
-        </button>
-      </form>
+      </section>
     </header>
   );
 };
