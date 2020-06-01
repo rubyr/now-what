@@ -17,7 +17,13 @@ const SearchForm: React.FC<Props> = (props: Props) => {
         value={query}
         aria-label="Title Search"
       />
-      <button onClick={() => props.searchTerm(query)}>Search</button>
+      <button
+        onClick={() => {
+          if (query) props.searchTerm(query);
+        }}
+      >
+        Search
+      </button>
     </form>
   );
 };

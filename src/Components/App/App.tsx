@@ -5,7 +5,7 @@ import SearchForm from "../SearchForm/SearchForm";
 import Header from "../Header/Header";
 import { searchResult } from "../../types";
 import ResultsPage from "../ResultsPage/ResultsPage";
-import { apiCalls } from "../../apiCalls";
+import { findSimilar } from "../../apiCalls";
 import FavoritesList from "../FavoritesPage/FavoritesList";
 import TitlePage from "../TitlePage/TitlePage";
 
@@ -47,7 +47,7 @@ function App(): ReactElement {
 
     // const data = await fetch(url)
     // let data = await apiCalls(searchTerm);
-    apiCalls(searchTerm)
+    findSimilar(searchTerm)
       .then((response) =>
         response.ok ? response.json() : setError(response.status)
       )
@@ -82,19 +82,21 @@ function App(): ReactElement {
           />
         </Route>
         <Route path="/search/:query"></Route>
-        {results && <Route
-          path="/title/:name"
-          render={({ match }) => {
-            const { name } = match.params;
-            const regularName = name.split('+').join(' ')
-            console.log(results);
-            const matchedName: searchResult | any = results.find((result) =>
-              result.Name.includes(regularName)
-            );
-            console.log(matchedName)
-            return <TitlePage item={matchedName}/>;
-          }}
-        ></Route>}
+        {results && (
+          <Route
+            path="/title/:name"
+            render={({ match }) => {
+              const { name } = match.params;
+              const regularName = name.split("+").join(" ");
+              console.log(results);
+              const matchedName: searchResult | any = results.find((result) =>
+                result.Name.includes(regularName)
+              );
+              console.log(matchedName);
+              return <TitlePage item={matchedName} />;
+            }}
+          ></Route>
+        )}
         <Route exact path="/">
           <SearchForm searchTerm={searchTerm} />
           {isLoading && <p>Finding matches...</p>}
