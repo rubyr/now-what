@@ -1,0 +1,13 @@
+.small-image-placeholder {
+    background-color: white;
+    width: 140px;
+    height: 200px;
+}
+
+.related-item {
+    margin: 1%;
+}
+
+.related-item-title {
+    margin-bottom: 6%;
+}

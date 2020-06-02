@@ -9,10 +9,6 @@ import { findSimilar } from "../../apiCalls";
 import FavoritesList from "../FavoritesPage/FavoritesList";
 import TitlePage from "../TitlePage/TitlePage";
 
-//state should be empty
-//eventually state will hold the user's search term
-//need another method in this function maybe that will be passed to search form
-
 function App(): ReactElement {
   const [results, setResults] = useState<searchResult[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -41,9 +37,9 @@ function App(): ReactElement {
     //needs to do a fetch call based on the search term and console log results
     setError(null);
     setIsLoading(true);
-    const corsAnywhere: string = `https://cors-anywhere.herokuapp.com/`;
-    const modifiedSearchTerm: string = searchTerm.split(" ").join("+");
-    const url = `${corsAnywhere}https://tastedive.com/api/similar?q=${modifiedSearchTerm}&verbose=1&k=372838-DavePern-7J59GJ8D&limit=5`;
+    // const corsAnywhere: string = `https://cors-anywhere.herokuapp.com/`;
+    // const modifiedSearchTerm: string = searchTerm.split(" ").join("+");
+    // const url = `${corsAnywhere}https://tastedive.com/api/similar?q=${modifiedSearchTerm}&verbose=1&k=372838-DavePern-7J59GJ8D&limit=5`;
 
     // const data = await fetch(url)
     // let data = await apiCalls(searchTerm);
@@ -51,11 +47,13 @@ function App(): ReactElement {
       .then((response) =>
         response.ok ? response.json() : setError(response.status)
       )
-      .then((response) => 
-        response ? setResults([...response.Similar.Info, ...response.Similar.Results]) : null
+      .then((response) =>
+        response
+          ? setResults([...response.Similar.Info, ...response.Similar.Results])
+          : null
       )
       .catch((err) => setError(err));
-  
+
     setIsLoading(false);
   };
 
@@ -82,21 +80,32 @@ function App(): ReactElement {
           />
         </Route>
         <Route path="/search/:query"></Route>
-        {results && (
-          <Route
-            path="/title/:name"
-            render={({ match }) => {
-              const { name } = match.params;
-              const regularName = name.split("+").join(" ");
-              console.log(results);
-              const matchedName: searchResult | any = results.find((result) =>
-                result.Name.includes(regularName)
-              );
-              console.log(matchedName);
-              return <TitlePage item={matchedName} />;
-            }}
-          ></Route>
-        )}
+        <Route
+          path="/title/:name"
+          render={({ match }) => {
+            const { name } = match.params;
+            const randomNum = Math.round(Math.random() * 1000000);
+            //everything in here is making this run twice. Why?
+            // const regularName = name.split("+").join(" ");
+            // const matchedName: searchResult | any = results.find((result) =>
+            //   result.Name.includes(regularName)
+            // );
+            // console.log(matchedName);
+            // console.log(results, isLoading, error, favorites)
+            return (
+              <TitlePage
+                url={name}
+                key={randomNum}
+                toggleFavorite={toggleFavorite}
+                favorites={favorites}
+
+              />
+            );
+
+            // may need to keep matchedName and just tweak it
+            //
+          }}
+        ></Route>
         <Route exact path="/">
           <SearchForm searchTerm={searchTerm} />
           {isLoading && <p>Finding matches...</p>}

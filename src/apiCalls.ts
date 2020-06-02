@@ -8,6 +8,15 @@ export const findSimilar = async (term: string) => {
   return data;
 };
 
+export const findTitleInfo = async (term: string) => {
+  const corsAnywhere: string = `https://cors-anywhere.herokuapp.com/`;
+  const url = `${corsAnywhere}https://tastedive.com/api/similar?q=${term}&verbose=1&k=372838-DavePern-7J59GJ8D&limit=3`;
+  // const data = await fetch(url);
+  return await fetch(url)
+    .then((response) => response.json())
+    .catch((err) => console.log(err));
+};
+
 export const fetchFavorites = async (favorites: string[]) => {
   const corsAnywhere: string = `https://cors-anywhere.herokuapp.com/`;
   const media: string = favorites.join("%2C");
