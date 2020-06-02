@@ -10,8 +10,8 @@ const FavoriteButton = (props: Props) => {
   const [imgSrc, setImgSrc] = useState(props.favorite ? "-fill" : "");
   const toggleFavorite = () => {
     props.toggleFavorite();
-    const newClass = imgSrc ? "" : "-fill";
-    setImgSrc(newClass);
+    const newSrc = imgSrc ? "" : "-fill";
+    setImgSrc(newSrc);
   };
   return (
     <button
@@ -19,7 +19,7 @@ const FavoriteButton = (props: Props) => {
       aria-label="favorite"
       className="FavoriteButton"
     >
-      <img src={`images/favorite${imgSrc}.svg`} alt="favorite" />
+      <img src={`/images/favorite${imgSrc}.svg`} alt="favorite" />
     </button>
   );
 };

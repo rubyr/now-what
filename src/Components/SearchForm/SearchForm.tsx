@@ -8,22 +8,23 @@ interface Props {
 
 const SearchForm: React.FC<Props> = (props: Props) => {
   const [query, setQuery] = useState("");
+
+  const search = () => {
+    if (query.trim()) {
+      props.searchTerm(query.trim());
+      setQuery(query.trim());
+    }
+  };
   return (
     <form className="SearchForm" onSubmit={(e) => e.preventDefault()}>
       <input
         placeholder="Search for a title"
         onChange={(e) => setQuery(e.target.value)}
-        onKeyDown={(e) => e.key === "Enter" && props.searchTerm(query)}
+        onKeyDown={(e) => e.key === "Enter" && search()}
         value={query}
         aria-label="Title Search"
       />
-      <button
-        onClick={() => {
-          if (query) props.searchTerm(query);
-        }}
-      >
-        Search
-      </button>
+      <button onClick={search}>Search</button>
     </form>
   );
 };

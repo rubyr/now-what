@@ -1,13 +1,12 @@
-.small-image-placeholder {
-    background-color: white;
-    width: 140px;
-    height: 200px;
-}
-
 .related-item {
-    margin: 1%;
+  margin: 1%;
+  height: 100%;
 }
 
 .related-item-title {
-    margin-bottom: 6%;
+  margin-bottom: 6%;
+}
+
+.related-item img {
+  height: 250px;
 }

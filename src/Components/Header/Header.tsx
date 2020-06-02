@@ -13,7 +13,7 @@ const Header: React.FC<Props> = (props: Props): ReactElement => {
 
   const handleClick = (e: SyntheticEvent): void => {
     e.preventDefault();
-    props.searchTerm(searchInput)
+    props.searchTerm(searchInput);
     clearSearch();
   };
 
@@ -47,7 +47,7 @@ const Header: React.FC<Props> = (props: Props): ReactElement => {
           </button>
         </form>
         <img
-          src="images/search.svg"
+          src="/images/search.svg"
           alt="search"
           onClick={() => updateShowSearch(!showSearch)}
         />
