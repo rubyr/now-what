@@ -3,7 +3,6 @@ import { searchResult } from "../../types";
 import "./TitlePage.css";
 // import youtube from '../../../public/images/youtube_logo.png'
 import { findTitleInfo, getWikiImage } from "../../apiCalls";
-import { setConstantValue } from "typescript";
 import RelatedItem from "../RelatedItem/RelatedItem";
 import FavoriteButton from "../FavoriteButton/FavoriteButton";
 
@@ -24,12 +23,24 @@ const TitlePage: React.FC<Props> = (props: Props) => {
       if (data) {
         setResults(data.Similar.Results);
         setInfo(data.Similar.Info);
+
+        try {
+          const wUrl = (data.Similar.Info[0] as searchResult).wUrl;
+          const page = decodeURI(wUrl.split("/").pop() as string);
+          const imgUrl = await getWikiImage(page);
+
+          if (imgUrl) setImg(imgUrl);
+        } catch (e) {
+          console.error(e);
+        }
+
         return data;
       }
     }
     retrieveInfo();
     return setResults([]);
   }, [props.url]);
+
   if (!results.length || !info.length) {
     return (
       <section>
@@ -52,7 +63,7 @@ const TitlePage: React.FC<Props> = (props: Props) => {
               favorite={props.isFavorite(`${info[0].Type}:${info[0].Name}`)}
             />
           </section>
-          <figure className="result-card-image-placeholder"></figure>
+          <img src={img} alt={info[0].Name} className="title-image" />
           <a href={info[0].yUrl} target="_blank" rel="noopener noreferrer">
             <img
               className="youtube-link"
