@@ -19,19 +19,18 @@ const ResultsPage = (props: Props) => {
       type={r.Type}
     />
   ));
-  const searchItem = results.shift()
-
+  const searchItem = results.shift();
 
   return (
     <div className="ResultsPage">
       <section className="search-item-display">
-         <h2>Main Title</h2>
-         {searchItem}
+        <h2>Main Title</h2>
+        {searchItem}
       </section>
-       <h2>Related Titles</h2>
-       {results}
+      <h2>Related Titles</h2>
+      {results}
     </div>
-  )
+  );
 };
 
 export default ResultsPage;

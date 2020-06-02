@@ -81,18 +81,26 @@ function App(): ReactElement {
         </Route>
         <Route path="/search/:query"></Route>
         <Route
-    
           path="/title/:name"
           render={({ match }) => {
             const { name } = match.params;
-            //everything in here is making this run twice. Why? 
+            const randomNum = Math.round(Math.random() * 1000000);
+            //everything in here is making this run twice. Why?
             // const regularName = name.split("+").join(" ");
             // const matchedName: searchResult | any = results.find((result) =>
             //   result.Name.includes(regularName)
             // );
             // console.log(matchedName);
             // console.log(results, isLoading, error, favorites)
-            return <TitlePage url={name} />;
+            return (
+              <TitlePage
+                url={name}
+                key={randomNum}
+                toggleFavorite={toggleFavorite}
+                favorites={favorites}
+
+              />
+            );
 
             // may need to keep matchedName and just tweak it
             //
