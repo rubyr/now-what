@@ -26,8 +26,7 @@ const TitlePage: React.FC<Props> = (props: Props) => {
 
         try {
           const wUrl = (data.Similar.Info[0] as searchResult).wUrl;
-          const page = decodeURI(wUrl.split("/").pop() as string);
-          const imgUrl = await getWikiImage(page);
+          const imgUrl = await getWikiImage(wUrl);
 
           if (imgUrl) setImg(imgUrl);
         } catch (e) {

@@ -18,8 +18,7 @@ const RelatedItem: React.FC<searchResult> = (props: Props) => {
   useEffect(() => {
     async function getImage() {
       try {
-        const page = decodeURI(props.wUrl.split("/").pop() as string);
-        const imgurl = await getWikiImage(page);
+        const imgurl = await getWikiImage(props.wUrl);
 
         if (imgurl) setImg(imgurl);
       } catch (e) {

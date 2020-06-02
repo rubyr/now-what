@@ -20,17 +20,10 @@ const Result = (props: Props) => {
 
   const getImage = async (): Promise<void> => {
     try {
-      const title = decodeURI(wUrl.split("/").pop() as string);
-
-      const url = await getWikiImage(title);
+      const url = await getWikiImage(wUrl);
       if (url) setImageUrl(url);
-    } catch {
-      try {
-        const url = await getWikiImage(Name);
-        if (url) setImageUrl(url);
-      } catch (e) {
-        console.error(e);
-      }
+    } catch (e) {
+      console.error(e);
     }
   };
 
