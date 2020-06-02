@@ -48,7 +48,7 @@ const TitlePage: React.FC<Props> = (props: Props) => {
         <aside className="title-overview">
           <section className="title-header">
             <h4>{info[0].Name}</h4>
-            <div className="title-favorite-button">
+            {/* <div className="title-favorite-button"> */}
               {/* this workaround is likely not accessible */}
               <FavoriteButton
                 toggleFavorite={() =>
@@ -58,7 +58,7 @@ const TitlePage: React.FC<Props> = (props: Props) => {
                   `${info[0].Type}:${info[0].Name}`
                 )}
               />
-            </div>
+            {/* </div> */}
           </section>
           <figure className="result-card-image-placeholder"></figure>
           <a href={info[0].yUrl} target="_blank" rel="noopener noreferrer">
