@@ -12,7 +12,7 @@ const Header: React.FC<Props> = (props: Props): ReactElement => {
   const [showSearch, updateShowSearch] = useState(false);
 
   const handleClick = (e: SyntheticEvent): void => {
-    e.preventDefault();
+    // e.preventDefault();
     props.searchTerm(searchInput)
     clearSearch();
   };
@@ -42,9 +42,11 @@ const Header: React.FC<Props> = (props: Props): ReactElement => {
             onChange={(e) => updateSearchInput(e.target.value)}
             aria-label="search"
           />
-          <button className="header-search-button" onClick={handleClick}>
-            Search
-          </button>
+          <Link to="/">
+            <button className="header-search-button" onClick={handleClick}>
+              Search
+            </button>
+          </Link>
         </form>
         <img
           src="images/search.svg"
