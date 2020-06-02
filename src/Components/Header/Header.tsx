@@ -14,6 +14,7 @@ const Header: React.FC<Props> = (props: Props): ReactElement => {
 
   const handleClick = (e: SyntheticEvent): void => {
     props.searchTerm(searchInput)
+    props.clearResults()
     clearSearch();
   };
 
