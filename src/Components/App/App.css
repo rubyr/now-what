@@ -1,6 +1,10 @@
 .App {
   text-align: center;
-  height: 100vh;
+  height: calc(100vh - 80px);
+}
+
+.App>:nth-child(2) {
+  margin-top: 80px;
 }
 
 .error {
