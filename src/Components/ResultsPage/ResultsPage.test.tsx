@@ -16,4 +16,11 @@ describe('ResultsPage', () => {
         expect(getByText("An American Tale: Fievel Goes West")).toBeInTheDocument()
         expect(getByText("An American Tale")).toBeInTheDocument()
     })
+
+    it('should display a main title section as well as a related titles section', () => {
+        const { getByText } = render(<MemoryRouter><ResultsPage results={[]} toggleFavorite={()=>{}} favorites={[]}/></MemoryRouter>)
+
+        expect(getByText("Main Title")).toBeInTheDocument()
+        expect(getByText("Related Titles")).toBeInTheDocument()
+    })
 })

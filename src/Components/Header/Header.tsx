@@ -1,23 +1,25 @@
 import React, { useState, ReactElement, SyntheticEvent } from "react";
 import "./Header.css";
 import { Link } from "react-router-dom";
+import { isPropertySignature } from "typescript";
 
-interface Props {}
+interface Props {
+  searchTerm: (term: string) => void;
+}
 
-const Header: React.FC<Props> = (): ReactElement => {
+const Header: React.FC<Props> = (props: Props): ReactElement => {
   const [searchInput, updateSearchInput] = useState("");
   const [showSearch, updateShowSearch] = useState(false);
 
   const handleClick = (e: SyntheticEvent): void => {
     e.preventDefault();
+    props.searchTerm(searchInput)
     clearSearch();
   };
 
   const clearSearch = (): void => {
     updateSearchInput("");
   };
-
-  // if not doing SPA, maybe conditional render search bar when not at home screen?
 
   return (
     <header>
