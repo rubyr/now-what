@@ -112,6 +112,7 @@ describe("App", () => {
 
     await waitFor(() => getByText('Pulp Fiction'))
     expect(getByText('Pulp Fiction')).toBeInTheDocument()
+    
     // goes bad here
     fireEvent.click(getByAltText('Pulp Fiction'))
 
