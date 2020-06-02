@@ -67,7 +67,7 @@ function App(): ReactElement {
 
   return (
     <main className="App">
-      <Header />
+      <Header searchTerm={searchTerm}/>
       {error && (
         <h3 className="error">
           We're sorry, but there seems to have been an issue. Please refresh the

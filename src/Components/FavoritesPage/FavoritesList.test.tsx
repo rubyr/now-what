@@ -9,7 +9,6 @@ import { mockFavoriteData } from "./mockData";
 jest.mock("../../apiCalls");
 
 describe("ResultsPage", () => {
-  // ??? not sure how to go from string to displaying data...mock the fetch i guess?
 
   it("should display the favorites", () => {
     const mockFavorite1: string = "An American Tale: Fievel Goes West";
