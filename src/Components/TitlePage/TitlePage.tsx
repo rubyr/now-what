@@ -3,14 +3,13 @@ import { searchResult } from "../../types";
 import "./TitlePage.css";
 // import youtube from '../../../public/images/youtube_logo.png'
 import { findTitleInfo, getWikiImage } from "../../apiCalls";
-import { setConstantValue } from "typescript";
 import RelatedItem from "../RelatedItem/RelatedItem";
 import FavoriteButton from "../FavoriteButton/FavoriteButton";
 
 interface Props {
   url: string;
   toggleFavorite: (id: string) => void;
-  favorites: string[];
+  isFavorite: (id: string) => boolean; // turning this into a function means it won't update when app.favorites does
 }
 
 const TitlePage: React.FC<Props> = (props: Props) => {
@@ -18,21 +17,29 @@ const TitlePage: React.FC<Props> = (props: Props) => {
   const [info, setInfo] = useState<searchResult[]>([]);
   const [img, setImg] = useState("");
 
-  console.log("happening");
-  console.log(props.url);
   useEffect(() => {
     async function retrieveInfo() {
-      const allData = await findTitleInfo(props.url).then((data) => {
-        if (data) {
-          setResults(data.Similar.Results);
-          setInfo(data.Similar.Info);
-          return data;
+      const data = await findTitleInfo(props.url);
+      if (data) {
+        setResults(data.Similar.Results);
+        setInfo(data.Similar.Info);
+
+        try {
+          const wUrl = (data.Similar.Info[0] as searchResult).wUrl;
+          const imgUrl = await getWikiImage(wUrl);
+
+          if (imgUrl) setImg(imgUrl);
+        } catch (e) {
+          console.error(e);
         }
-      });
+
+        return data;
+      }
     }
     retrieveInfo();
     return setResults([]);
   }, [props.url]);
+
   if (!results.length || !info.length) {
     return (
       <section>
@@ -48,19 +55,14 @@ const TitlePage: React.FC<Props> = (props: Props) => {
         <aside className="title-overview">
           <section className="title-header">
             <h4>{info[0].Name}</h4>
-            {/* <div className="title-favorite-button"> */}
-              {/* this workaround is likely not accessible */}
-              <FavoriteButton
-                toggleFavorite={() =>
-                  props.toggleFavorite(`${info[0].Type}:${info[0].Name}`)
-                }
-                favorite={props.favorites.includes(
-                  `${info[0].Type}:${info[0].Name}`
-                )}
-              />
-            {/* </div> */}
+            <FavoriteButton
+              toggleFavorite={() =>
+                props.toggleFavorite(`${info[0].Type}:${info[0].Name}`)
+              }
+              favorite={props.isFavorite(`${info[0].Type}:${info[0].Name}`)}
+            />
           </section>
-          <figure className="result-card-image-placeholder"></figure>
+          <img src={img} alt={info[0].Name} className="title-image" />
           <a href={info[0].yUrl} target="_blank" rel="noopener noreferrer">
             <img
               className="youtube-link"
@@ -76,9 +78,8 @@ const TitlePage: React.FC<Props> = (props: Props) => {
               Read more...
             </a>
           </p>
-            <h5>Related Items</h5>
-          <section className="all-related-items">
-            {allRelatedItems}</section>
+          <h5>Related Items</h5>
+          <section className="all-related-items">{allRelatedItems}</section>
         </main>
       </section>
     );

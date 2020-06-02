@@ -25,7 +25,8 @@ export const fetchFavorites = async (favorites: string[]) => {
   return await fetch(url).then((response) => response.json());
 };
 
-export const getWikiImage = async (page: string) => {
+export const getWikiImage = async (wUrl: string) => {
+  const page = decodeURI(wUrl.split("/").pop() as string);
   const url = await wiki()
     .page(page)
     .then((page) => page.mainImage());

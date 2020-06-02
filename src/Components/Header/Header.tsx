@@ -50,7 +50,7 @@ const Header: React.FC<Props> = (props: Props): ReactElement => {
           </Link>
         </form>
         <img
-          src="images/search.svg"
+          src="/images/search.svg"
           alt="search"
           onClick={() => updateShowSearch(!showSearch)}
         />
