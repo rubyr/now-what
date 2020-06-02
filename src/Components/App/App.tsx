@@ -65,7 +65,7 @@ function App(): ReactElement {
 
   return (
     <main className="App">
-      <Header searchTerm={searchTerm}/>
+      <Header searchTerm={searchTerm} />
       {error && (
         <h3 className="error">
           We're sorry, but there seems to have been an issue. Please refresh the
@@ -84,7 +84,6 @@ function App(): ReactElement {
           path="/title/:name"
           render={({ match }) => {
             const { name } = match.params;
-            const randomNum = Math.round(Math.random() * 1000000);
             //everything in here is making this run twice. Why?
             // const regularName = name.split("+").join(" ");
             // const matchedName: searchResult | any = results.find((result) =>
@@ -95,10 +94,8 @@ function App(): ReactElement {
             return (
               <TitlePage
                 url={name}
-                key={randomNum}
                 toggleFavorite={toggleFavorite}
-                favorites={favorites}
-
+                isFavorite={(id: string) => favorites.includes(id)}
               />
             );
 
