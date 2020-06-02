@@ -5,6 +5,7 @@ import { isPropertySignature } from "typescript";
 
 interface Props {
   searchTerm: (term: string) => void;
+  clearResults: () => void;
 }
 
 const Header: React.FC<Props> = (props: Props): ReactElement => {
@@ -12,7 +13,6 @@ const Header: React.FC<Props> = (props: Props): ReactElement => {
   const [showSearch, updateShowSearch] = useState(false);
 
   const handleClick = (e: SyntheticEvent): void => {
-    // e.preventDefault();
     props.searchTerm(searchInput)
     clearSearch();
   };
@@ -25,7 +25,7 @@ const Header: React.FC<Props> = (props: Props): ReactElement => {
     <header>
       <Link to="/">
         <section className="title-section">
-          <h1>Now What!?</h1>
+          <button className="now-what-button" onClick={() => props.clearResults()}><h1>Now What!?</h1></button>
         </section>
       </Link>
       <section className="actions">

@@ -57,6 +57,9 @@ function App(): ReactElement {
     setIsLoading(false);
   };
 
+  const clearResults = () => {
+    setResults([])
+  }
   //how would I do this in react?
   //that's a good question lol
   //I'm just trying to get the component to even show up.
@@ -65,7 +68,7 @@ function App(): ReactElement {
 
   return (
     <main className="App">
-      <Header searchTerm={searchTerm}/>
+      <Header searchTerm={searchTerm} clearResults={clearResults}/>
       {error && (
         <h3 className="error">
           We're sorry, but there seems to have been an issue. Please refresh the
