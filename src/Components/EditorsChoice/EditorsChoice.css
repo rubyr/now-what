@@ -1,4 +1,26 @@
 .Editors-Choice {
   display: flex;
+  flex-wrap: wrap;
   overflow: scroll;
+  margin: 0 2%;
+  background-color: #C4C4C4;
+  border-radius: 5px;
+}
+
+.editor-pick-section {
+  width: 100%;
+  margin: 1%;
+  display: flex;
+  flex-wrap: wrap;
+  /* background-color: #C4C4C4; */
+}
+
+.editor-pick-seaction-header {
+  color: black;
+  margin: 1%;
+  font-family: "Avenir Next";
+  width: 100%;
+  text-align: left;
+  font-size: 1.5rem;
+
 }
