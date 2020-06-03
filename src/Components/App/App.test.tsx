@@ -11,6 +11,19 @@ jest.mock("../../apiCalls");
 
 // const searchResults = mocked('../../apiCalls', true);
 
+mocked(findSimilar).mockImplementation((term: string) =>
+      Promise.resolve(new Response(JSON.stringify(fetchedData)))
+    );
+    mocked(fetchFavorites).mockImplementation((favorites: string[]) =>
+      Promise.resolve(favoritesData)
+    );
+    mocked(getWikiImage).mockImplementation((title: string) => 
+      Promise.resolve("https://www.coolsite.com/this/is/not/a/url.png")
+    );
+    mocked(findTitleInfo).mockImplementation((term: string) =>
+      Promise.resolve(fetchedData)
+    );
+
 describe("App", () => {
   it("should render the App", () => {
     const { getByText } = render(
@@ -23,9 +36,6 @@ describe("App", () => {
   });
 
   it("should display search results if the search term isn't an empty string", async () => {
-    mocked(findSimilar).mockImplementation((term: string) =>
-      Promise.resolve(new Response(JSON.stringify(fetchedData)))
-    );
     const { getByText, getAllByText, getByPlaceholderText } = render(
       <BrowserRouter>
         <App />
@@ -57,26 +67,11 @@ describe("App", () => {
     const searchButtons = getAllByText("Search")
     fireEvent.click(searchButtons[0]);
 
-
-    mocked(findSimilar).mockImplementation((term: string) =>
-      Promise.resolve(new Response(JSON.stringify(fetchedData)))
-    );
-
     await waitFor(() => getByText('Pulp Fiction'))
     expect(getByText('Pulp Fiction')).toBeInTheDocument()
   })
 
   it('should allow a user to favorite an item', async () => {
-    mocked(findSimilar).mockImplementation((term: string) =>
-      Promise.resolve(new Response(JSON.stringify(fetchedData)))
-    );
-    mocked(fetchFavorites).mockImplementation((favorites: string[]) =>
-      Promise.resolve(favoritesData)
-    );
-    mocked(getWikiImage).mockImplementation((title: string) => 
-      Promise.resolve("https://www.coolsite.com/this/is/not/a/url.png")
-    );
-
     const { getByText, getByPlaceholderText, getAllByText, getAllByLabelText } = render(
       <MemoryRouter>
         <App />
@@ -94,24 +89,11 @@ describe("App", () => {
     fireEvent.click(getAllByLabelText("favorite")[0])
     fireEvent.click(getByText("FAVORITES"))
     
-    // await waitFor(() => getByText(/pulp fiction/ig))
     const pulp = await waitFor(() => getByText("Pulp Fiction"))  
     expect(pulp).toBeInTheDocument()
   })
 
   it('should show a user details for a given item when they click on it', async () => {
-    mocked(findSimilar).mockImplementation((term: string) =>
-      Promise.resolve(new Response(JSON.stringify(fetchedData)))
-    );
-    mocked(fetchFavorites).mockImplementation((favorites: string[]) =>
-      Promise.resolve(favoritesData)
-    );
-    mocked(getWikiImage).mockImplementation((title: string) => 
-      Promise.resolve("https://www.coolsite.com/this/is/not/a/url.png")
-    );
-    mocked(findTitleInfo).mockImplementation((term: string) =>
-      Promise.resolve(fetchedData)
-    );
     const { getByText, getByPlaceholderText, getAllByText } = render(
       <BrowserRouter>
         <App />
