@@ -19,7 +19,7 @@ const TitlePage: React.FC<Props> = (props: Props) => {
 
   useEffect(() => {
     async function retrieveInfo() {
-      const data = await findTitleInfo(props.url)
+      const data = await findTitleInfo(props.url);
       if (data) {
         setResults(data.Similar.Results);
         setInfo(data.Similar.Info);
@@ -30,7 +30,7 @@ const TitlePage: React.FC<Props> = (props: Props) => {
 
           if (imgUrl) setImg(imgUrl);
         } catch (e) {
-          setImg('')
+          setImg("");
         }
 
         return data;
@@ -54,7 +54,7 @@ const TitlePage: React.FC<Props> = (props: Props) => {
       <section className="title-page">
         <aside className="title-overview">
           <section className="title-header">
-            <h4>{info[0].Name}</h4>
+            <h1 className="title-title">{info[0].Name}</h1>
             <FavoriteButton
               toggleFavorite={() =>
                 props.toggleFavorite(`${info[0].Type}:${info[0].Name}`)
@@ -62,7 +62,9 @@ const TitlePage: React.FC<Props> = (props: Props) => {
               favorite={props.isFavorite(`${info[0].Type}:${info[0].Name}`)}
             />
           </section>
-          {img.length  && <img src={img} alt={info[0].Name} className="title-image" />}
+          {img.length && (
+            <img src={img} alt={info[0].Name} className="title-image" />
+          )}
           <figure className="title-image"></figure>
           <a href={info[0].yUrl} target="_blank" rel="noopener noreferrer">
             <img
@@ -79,8 +81,10 @@ const TitlePage: React.FC<Props> = (props: Props) => {
               Read more...
             </a>
           </p>
-          <h5>Related Items</h5>
-          <section className="all-related-items">{results && allRelatedItems}</section>
+          <h3>Related Items</h3>
+          <section className="all-related-items">
+            {results && allRelatedItems}
+          </section>
         </main>
       </section>
     );

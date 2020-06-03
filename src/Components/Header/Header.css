@@ -21,7 +21,6 @@ header {
   display: inline-block;
   color: #fff;
   text-align: center;
-  /* line-height: 60px; */
   font-size: 2rem;
   font-family: "Permanent Marker", cursive;
   font-weight: 300;
@@ -36,12 +35,10 @@ header {
 }
 
 .title-section {
-  /* background-color: #000; */
   height: 100%;
   width: 25%;
   min-width: 200px;
   max-width: 300px;
-  /* padding: 0 2%; */
   margin: 0;
   text-align: left;
 }
@@ -49,7 +46,7 @@ header {
 .favorites {
   letter-spacing: "-1px";
   color: white;
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
 }
 
 .header-search {

@@ -32,37 +32,40 @@ const FavoritesDisplay = (props: Props) => {
 }, {});
 
   return (
-    <div className="favorites-display">
-       <h2>Favorites</h2>
-       <section className="favorites-section">
-       {resultsObj.movie && <h3 className="favorite-type-header">Movies</h3>}
-       {resultsObj.movie}
-       </section>
-       <section className="favorites-section">
-       {resultsObj.show && <h3 className="favorite-type-header">TV Shows</h3>}
-       {resultsObj.show}
-       </section>
-       <section className="favorites-section">
-       {resultsObj.game && <h3 className="favorite-type-header">Games</h3>}
-       {resultsObj.game}
-       </section>
-       <section className="favorites-section">
-       {resultsObj.music && <h3 className="favorite-type-header">Music</h3>}
-       {resultsObj.music}
-       </section>
-       <section className="favorites-section">
-       {resultsObj.book && <h3 className="favorite-type-header">Books</h3>}
-       {resultsObj.book}
-       </section>
-       <section className="favorites-section">
-       {resultsObj.author && <h3 className="favorite-type-header">Authors</h3>}
-       {resultsObj.author}
-       </section>
-       <section className="favorites-section">
-       {resultsObj.podcasts && <h3 className="favorite-type-header">Podcasts</h3>}
-       {resultsObj.podcasts}
-       </section>
-    </div>
+    <section>
+      <h2 className="favorites-header">Favorites</h2>
+      <div className="favorites-display">
+        <section className="favorites-section">
+        {resultsObj.movie && <h3 className="favorite-type-header">Movies</h3>}
+        {resultsObj.movie}
+        </section>
+        <section className="favorites-section">
+        {resultsObj.show && <h3 className="favorite-type-header">TV Shows</h3>}
+        {resultsObj.show}
+        </section>
+        <section className="favorites-section">
+        {resultsObj.game && <h3 className="favorite-type-header">Games</h3>}
+        {resultsObj.game}
+        </section>
+        <section className="favorites-section">
+        {resultsObj.music && <h3 className="favorite-type-header">Music</h3>}
+        {resultsObj.music}
+        </section>
+        <section className="favorites-section">
+        {resultsObj.book && <h3 className="favorite-type-header">Books</h3>}
+        {resultsObj.book}
+        </section>
+        <section className="favorites-section">
+        {resultsObj.author && <h3 className="favorite-type-header">Authors</h3>}
+        {resultsObj.author}
+        </section>
+        <section className="favorites-section">
+        {resultsObj.podcasts && <h3 className="favorite-type-header">Podcasts</h3>}
+        {resultsObj.podcasts}
+        </section>
+      </div>
+    </section>
+    
   )
 };
 

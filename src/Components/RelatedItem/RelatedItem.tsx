@@ -28,12 +28,12 @@ const RelatedItem: React.FC<searchResult> = (props: Props) => {
     getImage();
   }, [props.wUrl]);
   return (
-    <section className="related-item">
-      <Link to={`${props.Name.split(" ").join("+")}`}>
-        <h5 className="related-item-title">{props.Name}</h5>
+    <Link to={`${props.Name.split(" ").join("+")}`}>
+      <section className="related-item">
         <img src={img} alt={props.Name} />
-      </Link>
-    </section>
+        <h5 className="related-item-title">{props.Name}</h5>
+      </section>
+    </Link>
   );
 };
 
