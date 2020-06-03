@@ -241,3 +241,27 @@ export const smallerfetchedData = {
     ],
   },
 };
+export const favoritesData = {
+  "Similar": {
+    "Info": [
+      {
+        "Name": "Pulp Fiction",
+        "Type": "movie",
+        "wTeaser": "Pulp Fiction is a 1994 American crime film written and directed by Quentin Tarantino, who conceived it with Roger Avary. Starring John Travolta, Samuel L. Jackson, Bruce Willis, Tim Roth, Ving Rhames, and Uma Thurman, it tells several stories of criminal Los Angeles. The title refers to the pulp magazines and hardboiled crime novels popular during the mid-20th century, known for their graphic violence and punchy dialogue.Tarantino wrote Pulp Fiction in 1992 and 1993, incorporating scenes that Avary originally wrote for True Romance (1993). Its plot occurs out of chronological order. The film is also self-referential from its opening moments, beginning with a title card that gives two dictionary definitions of \"pulp\". Considerable screen time is devoted to monologues and casual conversations with eclectic dialogue revealing each character's perspectives on several subjects, and the film features an ironic combination of humor and strong violence. TriStar Pictures reportedly turned down the script as \"too demented\". Miramax co-chairman Harvey Weinstein was enthralled, however, and the film became the first that Miramax fully financed.",
+        "wUrl": "http://en.wikipedia.org/wiki/Pulp_Fiction_(movie)",
+        "yUrl": "https://www.youtube-nocookie.com/embed/s7EdQ4FqbhY",
+        "yID": "s7EdQ4FqbhY"
+      }
+    ],
+    "Results": [
+      {
+        "Name": "Fight Club",
+        "Type": "movie",
+        "wTeaser": "Fight Club is a 1999 American film directed by David Fincher and starring Brad Pitt, Edward Norton, and Helena Bonham Carter. It is based on the 1996 novel of the same name by Chuck Palahniuk. Norton plays the unnamed narrator, who is discontented with his white-collar job. He forms a \"fight club\" with soap salesman Tyler Durden (Pitt), and becomes embroiled in a relationship with him and a destitute woman, Marla Singer (Bonham Carter).Palahniuk's novel was optioned by Fox 2000 Pictures producer Laura Ziskin, who hired Jim Uhls to write the film adaptation. Fincher was selected because of his enthusiasm for the story. He developed the script with Uhls and sought screenwriting advice from the cast and others in the film industry. He and the cast compared the film to Rebel Without a Cause (1955) and The Graduate (1967), with a theme of conflict between Generation X and the value system of advertising.",
+        "wUrl": "http://en.wikipedia.org/wiki/Fight_Club_(film)",
+        "yUrl": "https://www.youtube-nocookie.com/embed/qtRKdVHc-cE",
+        "yID": "qtRKdVHc-cE"
+      }
+    ]
+  }
+}
