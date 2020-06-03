@@ -54,7 +54,7 @@ const TitlePage: React.FC<Props> = (props: Props) => {
       <section className="title-page">
         <aside className="title-overview">
           <section className="title-header">
-            <h4>{info[0].Name}</h4>
+            <h1 className="title-title">{info[0].Name}</h1>
             <FavoriteButton
               toggleFavorite={() =>
                 props.toggleFavorite(`${info[0].Type}:${info[0].Name}`)
@@ -78,7 +78,7 @@ const TitlePage: React.FC<Props> = (props: Props) => {
               Read more...
             </a>
           </p>
-          <h5>Related Items</h5>
+          <h3>Related Items</h3>
           <section className="all-related-items">{allRelatedItems}</section>
         </main>
       </section>
