@@ -2,7 +2,7 @@
   display: flex;
   flex-wrap: wrap;
   overflow: scroll;
-  margin: 0 2%;
+  margin: 1% 2%;
   background-color: #C4C4C4;
   border-radius: 5px;
 }
