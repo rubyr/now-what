@@ -6,7 +6,7 @@ import { MemoryRouter } from 'react-router-dom'
 
 describe('Header', () => {
     it('should display the app\'s title', () => {
-        const { getByText } = render(<MemoryRouter><Header searchTerm={() => {}}/></MemoryRouter>)
+        const { getByText } = render(<MemoryRouter><Header searchTerm={() => {}} clearResults={() => {}}/></MemoryRouter>)
 
         expect(getByText('Now What!?')).toBeInTheDocument()
     })
@@ -28,7 +28,7 @@ describe('Header', () => {
 
     it('should call the searchTerm method with the search input when search button is clicked', () => {
         const mockSearchTerm = jest.fn()
-        const { getAllByText, getByPlaceholderText } = render(<MemoryRouter><Header searchTerm={mockSearchTerm}/></MemoryRouter>)
+        const { getAllByText, getByPlaceholderText } = render(<MemoryRouter><Header searchTerm={mockSearchTerm} clearResults={() => {}}/></MemoryRouter>)
 
         fireEvent.change(getByPlaceholderText('search...'), { target: {value: 'Pee Wee\'s Big Adventure'}})
 

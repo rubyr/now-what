@@ -5,6 +5,7 @@ import { isPropertySignature } from "typescript";
 
 interface Props {
   searchTerm: (term: string) => void;
+  clearResults: () => void;
 }
 
 const Header: React.FC<Props> = (props: Props): ReactElement => {
@@ -12,8 +13,8 @@ const Header: React.FC<Props> = (props: Props): ReactElement => {
   const [showSearch, updateShowSearch] = useState(false);
 
   const handleClick = (e: SyntheticEvent): void => {
-    e.preventDefault();
-    props.searchTerm(searchInput);
+    props.searchTerm(searchInput)
+    props.clearResults()
     clearSearch();
   };
 
@@ -25,7 +26,7 @@ const Header: React.FC<Props> = (props: Props): ReactElement => {
     <header>
       <Link to="/">
         <section className="title-section">
-          <h1>Now What!?</h1>
+          <button className="now-what-button" onClick={() => props.clearResults()}><h1>Now What!?</h1></button>
         </section>
       </Link>
       <section className="actions">
@@ -42,9 +43,11 @@ const Header: React.FC<Props> = (props: Props): ReactElement => {
             onChange={(e) => updateSearchInput(e.target.value)}
             aria-label="search"
           />
-          <button className="header-search-button" onClick={handleClick}>
-            Search
-          </button>
+          <Link to="/">
+            <button className="header-search-button" onClick={handleClick}>
+              Search
+            </button>
+          </Link>
         </form>
         <img
           src="/images/search.svg"
