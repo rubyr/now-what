@@ -1,12 +1,26 @@
 .related-item {
   margin: 1%;
   height: 100%;
+  background: white;
+  border-radius: 5px;
 }
 
 .related-item-title {
-  margin-bottom: 6%;
+  margin: 6px;
+  text-align: center;
 }
 
 .related-item img {
-  height: 250px;
+  height: 100px;
+  width: 200px;
+  object-fit: cover;
+  margin: 5px;
+}
+
+.all-related-items a .related-item {
+  color: #222;
+}
+
+.all-related-items a:visited .related-item {
+  color: #555;
 }
