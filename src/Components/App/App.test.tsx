@@ -1,11 +1,12 @@
 import React from "react";
 import { render, fireEvent, waitFor } from "@testing-library/react";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, MemoryRouter } from "react-router-dom";
 import App from "./App";
-import { fetchedData } from "./fetch-call-test";
-import { findSimilar, fetchFavorites, findTitleInfo } from "../../apiCalls";
+import { fetchedData, favoritesData } from "./fetch-call-test";
+import { findSimilar, fetchFavorites, findTitleInfo, getWikiImage } from "../../apiCalls";
 import "@testing-library/jest-dom/extend-expect";
 import { mocked } from "ts-jest/utils";
+import { promises } from "dns";
 jest.mock("../../apiCalls");
 
 // const searchResults = mocked('../../apiCalls', true);
@@ -21,8 +22,11 @@ describe("App", () => {
     expect(element).toBeInTheDocument();
   });
 
-  it("should display search results if the search term isn't an empty string", () => {
-    const { getByText, getByPlaceholderText } = render(
+  it("should display search results if the search term isn't an empty string", async () => {
+    mocked(findSimilar).mockImplementation((term: string) =>
+      Promise.resolve(new Response(JSON.stringify(fetchedData)))
+    );
+    const { getByText, getAllByText, getByPlaceholderText } = render(
       <BrowserRouter>
         <App />
       </BrowserRouter>
@@ -31,19 +35,17 @@ describe("App", () => {
     fireEvent.change(getByPlaceholderText(/title/i), {
       target: { value: "pulp fiction" },
     });
-    fireEvent.click(getByPlaceholderText("Search for a title"));
-    mocked(findSimilar).mockImplementation((term: string) =>
-      Promise.resolve(new Response(JSON.stringify(fetchedData)))
-    );
+    // is this firing the right
+    fireEvent.click(getAllByText("Search")[1]);
     //make instance of response object
     //pass in data as its body
     //?
     // is this throwing an error because apicalls returns a promise but fetched data isn't a promise?
-    waitFor(() => expect(getByText("Fight Club")).toBeInTheDocument());
+    await waitFor(() => expect(getByText("Fight Club")).toBeInTheDocument());
   });
 
   it('should allow a user to search from the header search input', async () => {
-    const { getByText, getByPlaceholderText, getAllByText, getAllByLabelText } = render(
+    const { getByText, getByPlaceholderText, getAllByText } = render(
       <BrowserRouter>
         <App />
       </BrowserRouter>
@@ -64,38 +66,53 @@ describe("App", () => {
     expect(getByText('Pulp Fiction')).toBeInTheDocument()
   })
 
-  it.skip('should allow a user to favorite an item', async () => {
+  it('should allow a user to favorite an item', async () => {
+    mocked(findSimilar).mockImplementation((term: string) =>
+      Promise.resolve(new Response(JSON.stringify(fetchedData)))
+    );
+    mocked(fetchFavorites).mockImplementation((favorites: string[]) =>
+      Promise.resolve(favoritesData)
+    );
+    mocked(getWikiImage).mockImplementation((title: string) => 
+      Promise.resolve("https://www.coolsite.com/this/is/not/a/url.png")
+    );
+
     const { getByText, getByPlaceholderText, getAllByText, getAllByLabelText } = render(
-      <BrowserRouter>
+      <MemoryRouter>
         <App />
-      </BrowserRouter>
+      </MemoryRouter>
     );
 
     fireEvent.change(getByPlaceholderText('Search for a title'), {
       target: { value: "pulp fiction" },
     });
     fireEvent.click(getAllByText("Search")[1]);
-
-    mocked(findSimilar).mockImplementation((term: string) =>
-      Promise.resolve(new Response(JSON.stringify(fetchedData)))
-    );
 
     await waitFor(() => getByText('Pulp Fiction'))
     expect(getByText('Pulp Fiction')).toBeInTheDocument()
 
     fireEvent.click(getAllByLabelText("favorite")[0])
     fireEvent.click(getByText("FAVORITES"))
-
-    mocked(fetchFavorites).mockImplementation((favorites: string[]) =>
-      Promise.resolve(new Response(JSON.stringify(fetchedData.Similar.Info)))
-    );
     
-    const pulpFiction =  await waitFor(() => getByText("Pulp Fiction"))
-    expect(pulpFiction).toBeInTheDocument()
+    // await waitFor(() => getByText(/pulp fiction/ig))
+    const pulp = await waitFor(() => getByText("Pulp Fiction"))  
+    expect(pulp).toBeInTheDocument()
   })
 
   it('should show a user details for a given item when they click on it', async () => {
-    const { getByText, getByPlaceholderText, getAllByText, getByAltText } = render(
+    mocked(findSimilar).mockImplementation((term: string) =>
+      Promise.resolve(new Response(JSON.stringify(fetchedData)))
+    );
+    mocked(fetchFavorites).mockImplementation((favorites: string[]) =>
+      Promise.resolve(favoritesData)
+    );
+    mocked(getWikiImage).mockImplementation((title: string) => 
+      Promise.resolve("https://www.coolsite.com/this/is/not/a/url.png")
+    );
+    mocked(findTitleInfo).mockImplementation((term: string) =>
+      Promise.resolve(fetchedData)
+    );
+    const { getByText, getByPlaceholderText, getAllByText } = render(
       <BrowserRouter>
         <App />
       </BrowserRouter>
@@ -104,22 +121,23 @@ describe("App", () => {
     fireEvent.change(getByPlaceholderText('Search for a title'), {
       target: { value: "pulp fiction" },
     });
+
     fireEvent.click(getAllByText("Search")[1]);
 
-    mocked(findSimilar).mockImplementation((term: string) =>
-      Promise.resolve(new Response(JSON.stringify(fetchedData)))
-    );
-
-    await waitFor(() => getByText('Pulp Fiction'))
-    expect(getByText('Pulp Fiction')).toBeInTheDocument()
+    const pf = await waitFor(() => getByText('Pulp Fiction'))
+    expect(pf).toBeInTheDocument()
     
-    // goes bad here
-    fireEvent.click(getByAltText('Pulp Fiction'))
+    fireEvent.click(getByText('Pulp Fiction'))
 
-    // mocked(findTitleInfo).mockImplementation((term: string) =>
-    //   Promise.resolve(new Response(JSON.stringify(fetchedData)))
-    // );
-    // expect(getByText("Pulp Fiction is a 1994 American crime film written and directed by Quentin Tarantino, who conceived it with Roger Avary")).toBeInTheDocument()
+    const readMoreSignal = await waitFor(() => getByText('Read more...'))
+    expect(readMoreSignal).toBeInTheDocument()
+
+    await waitFor(() => getByText('Pulp Fiction'));
+
+    expect(getByText(
+      "Pulp Fiction is a 1994 American crime film written and directed by Quentin Tarantino, who conceived it with Roger Avary", 
+      { exact: false })
+    ).toBeInTheDocument()
   })
 
 
