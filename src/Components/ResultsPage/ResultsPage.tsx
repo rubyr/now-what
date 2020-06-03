@@ -22,14 +22,19 @@ const ResultsPage = (props: Props) => {
   const searchItem = results.shift();
 
   return (
-    <div className="ResultsPage">
-      <section className="search-item-display">
-        <h2>Main Title</h2>
-        {searchItem}
-      </section>
-      <h2>Related Titles</h2>
-      {results}
-    </div>
+    <>
+      <h2>Search Results</h2>
+      <div className="ResultsPage">
+        <section className="search-item-display">
+          <h2>Main Title</h2>
+          {searchItem}
+        </section>
+        <section className="results-container">
+          <h2>Related Titles</h2>
+          {results}
+        </section>
+      </div>
+    </>
   );
 };
 
