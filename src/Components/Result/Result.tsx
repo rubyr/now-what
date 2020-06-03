@@ -34,9 +34,9 @@ const Result = (props: Props) => {
   return (
     <article className="Result">
       <Link to={link}>
+        <img src={imageUrl} alt={Name} className="result-card-image" />
         <h3>{Name}</h3>
 
-        <img src={imageUrl} alt={Name} className="result-card-image" />
       </Link>
       <FavoriteButton
         toggleFavorite={() => props.toggleFavorite(Type + ":" + Name)}

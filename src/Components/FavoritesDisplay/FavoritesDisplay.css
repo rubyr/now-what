@@ -1,9 +1,9 @@
 .favorites-display {
-        display: flex;
-        flex-wrap: wrap;
-        background-color: #473E40;
-        margin: 0 3%;
-        border-radius: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #473E40;
+    margin: 0 3%;
+    border-radius: 5px;
 }
 
 .favorites-header {
@@ -22,9 +22,10 @@
   }
 
    .favorite-type-header {
-        color: #fff;
+        color: #EEEEEE;
         margin: 2% 1%;
         font-family: "Avenir Next";
         width: 100%;
         text-align: left;
+        font-size: 1.5rem;
    } 
