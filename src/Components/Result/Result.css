@@ -4,10 +4,15 @@
   align-items: center;
   width: 200px;
   position: relative;
+  background-color: #EEEEEE;
+  margin: 2%;
+  padding: 1%;
+  border-radius: 5px;
 }
 
 .Result h3 {
   max-width: 130px;
+  text-align: left;
 }
 
 .result-card-image {
@@ -15,4 +20,5 @@
   height: 200px;
   background: none;
   object-fit: contain;
+  margin: 5% 0;
 }
