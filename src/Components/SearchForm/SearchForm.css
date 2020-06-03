@@ -42,3 +42,20 @@
   border: none;
   height: 100%;
 }
+
+.text-container {
+  color: #fff;
+  position: relative;
+  top: 65%;
+  margin-bottom: 2%;
+}
+
+.main-page-text {
+  font-size: 3rem;
+  font-family: "Roboto"
+}
+
+.main-page-p {
+  font-size: 1.5rem;
+  font-family: "Roboto"
+}
