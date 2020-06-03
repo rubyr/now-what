@@ -55,7 +55,7 @@ export const getEditorsChoice = async () => {
 
   const datas = await Promise.all(
     splitMedia.map(async (mediaArray) => {
-      const media = mediaArray.join("%2C");
+      const media = encodeURI(mediaArray.join());
 
       const corsAnywhere: string = `https://cors-anywhere.herokuapp.com/`;
       const url = `${corsAnywhere}https://tastedive.com/api/similar?q=${media}&verbose=1&k=372838-DavePern-7J59GJ8D&limit=1`;
