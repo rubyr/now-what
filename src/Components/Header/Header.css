@@ -1,35 +1,55 @@
+@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
+
 header {
-  background-color: lightgray;
+  background-color: #b61239;
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 60px;
-  position: fixed;
+  position: static;
   width: 100vw;
   top: 0;
   z-index: 100;
 }
 
-h1 {
+.homepage-link {
+  height: 100%;
+}
+
+.now-what-text {
   display: inline-block;
   color: #fff;
   text-align: center;
-  line-height: 60px;
+  /* line-height: 60px; */
   font-size: 2rem;
+  font-family: "Permanent Marker", cursive;
+  font-weight: 300;
 }
 
 .now-what-button {
-  background-color: #000;
+  background-color: #b61239;
   border: none;
   cursor: pointer;
-  padding: 0 4%;
+  padding: 0 2%;
+  height: 100%;
 }
 
 .title-section {
-  background-color: #000;
-  width: 20%;
+  /* background-color: #000; */
+  height: 100%;
+  width: 25%;
   min-width: 200px;
   max-width: 300px;
+  /* padding: 0 2%; */
+  margin: 0;
+  text-align: left;
+}
+
+.favorites {
+  letter-spacing: "-1px";
+  color: white;
+  font-family: 'Lato', sans-serif;
 }
 
 .header-search {
@@ -37,6 +57,7 @@ h1 {
   height: 2rem;
   display: inline-block;
   margin-right: 20px;
+  border-radius: 5px;
 }
 
 .header-search-button {
@@ -45,6 +66,7 @@ h1 {
   height: 2rem;
   width: 120px;
   margin-right: 10px;
+  background-color: #cbe5e7;
 }
 
 .actions {
@@ -54,7 +76,7 @@ h1 {
   height: 100%;
 }
 
-.actions>* {
+.actions > * {
   margin-right: 10px;
 }
 
@@ -64,7 +86,7 @@ h1 {
   justify-content: center;
   align-items: center;
   padding: 10px;
-  color: black;
+  color: white;
 }
 
 .navlink:hover {
@@ -74,7 +96,7 @@ h1 {
 
 .header-form {
   position: absolute;
-  background: #d3d3d3;
+  background: #b61239;
   top: 60px;
   right: 0px;
   margin-right: 0px;
@@ -82,14 +104,14 @@ h1 {
   height: 0;
   transform: scaleY(0);
   transform-origin: 50% 0%;
-  transition: transform .3s, height .3s step-end;
+  transition: transform 0.3s, height 0.3s step-end;
 }
 
 .header-form.show {
   height: 40px;
   width: 100%;
   transform: scaleY(1);
-  transition: transform .3s, width 0s;
+  transition: transform 0.3s, width 0s;
 }
 
 @media all and (min-width: 600px) {
@@ -99,11 +121,11 @@ h1 {
     width: 0px;
     transform: scaleX(0);
     transform-origin: 100% 50%;
-    transition: transform .3s, width .3s step-end;
+    transition: transform 0.3s, width 0.3s step-end;
   }
   .header-form.show {
     width: 100%;
     transform: scaleX(1);
-    transition: transform .3s, width 0s;
+    transition: transform 0.3s, width 0s;
   }
 }
