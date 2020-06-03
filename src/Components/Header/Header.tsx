@@ -13,8 +13,8 @@ const Header: React.FC<Props> = (props: Props): ReactElement => {
   const [showSearch, updateShowSearch] = useState(false);
 
   const handleClick = (e: SyntheticEvent): void => {
-    props.searchTerm(searchInput)
-    props.clearResults()
+    props.searchTerm(searchInput);
+    props.clearResults();
     clearSearch();
   };
 
@@ -24,14 +24,19 @@ const Header: React.FC<Props> = (props: Props): ReactElement => {
 
   return (
     <header>
-      <Link to="/">
+      <Link to="/" className="homepage-link">
         <section className="title-section">
-          <button className="now-what-button" onClick={() => props.clearResults()}><h1>Now What!?</h1></button>
+          <button
+            className="now-what-button"
+            onClick={() => props.clearResults()}
+          >
+            <h1 className="now-what-text">Now What!?</h1>
+          </button>
         </section>
       </Link>
       <section className="actions">
         <Link to="/favorites" className="navlink">
-          <p style={{ letterSpacing: "-1px" }}>FAVORITES</p>
+          <p className="favorites">FAVORITES</p>
         </Link>
         <form className={`header-form${showSearch ? " show" : ""}`}>
           <input

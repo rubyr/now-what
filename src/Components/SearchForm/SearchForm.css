@@ -1,19 +1,44 @@
-.SearchForm {
+.form-container {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 20px auto;
+  margin: auto;
+  height: 140%;
+}
+
+.form-background {
+  height: 80%;
+  width: 100%;
+  background-image: linear-gradient(rgba(45, 1, 1, 0.49), rgba(45, 1, 1, 0.49)),
+    url("https://www.reviews.org/app/uploads/2018/06/Family-watching-YouTube-TV-on-laptop-e1573858678412.jpg");
+  background-size: cover;
+}
+
+.main-page-text {
+  text-align: center;
+  margin: 0;
+}
+
+.SearchForm {
+  width: 100%;
+  height: 5%;
 }
 
 .SearchForm * {
   font-size: 1.5rem;
-  line-height: 1.5rem;
 }
 
 .SearchForm input {
   margin-right: 10px;
+  width: 25%;
+  height: 100%;
 }
 
 .SearchForm button {
-  padding: 2px;
+  padding: 0 1%;
+  background-color: #b61239;
+  color: white;
+  border-radius: 5px;
+  border: none;
+  height: 100%;
 }

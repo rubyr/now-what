@@ -9,8 +9,6 @@ import { mocked } from "ts-jest/utils";
 import { promises } from "dns";
 jest.mock("../../apiCalls");
 
-// const searchResults = mocked('../../apiCalls', true);
-
 mocked(findSimilar).mockImplementation((term: string) =>
       Promise.resolve(new Response(JSON.stringify(fetchedData)))
     );
@@ -45,13 +43,27 @@ describe("App", () => {
     fireEvent.change(getByPlaceholderText(/title/i), {
       target: { value: "pulp fiction" },
     });
-    // is this firing the right
-    fireEvent.click(getAllByText("Search")[1]);
-    //make instance of response object
-    //pass in data as its body
-    //?
-    // is this throwing an error because apicalls returns a promise but fetched data isn't a promise?
+    const searchButtons = getAllByText("Search");
+    fireEvent.click(searchButtons[1]);
+    mocked(findSimilar).mockImplementation((term: string) =>
+      Promise.resolve(new Response(JSON.stringify(fetchedData)))
+    );
     await waitFor(() => expect(getByText("Fight Club")).toBeInTheDocument());
+  });
+
+  it("should not display search results if the search term is an empty string", () => {
+    const { getByText, getByPlaceholderText, getAllByText } = render(
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    );
+
+    fireEvent.change(getByPlaceholderText(/title/i), {
+      target: { value: "" },
+    });
+    const searchButtons = getAllByText("Search");
+    fireEvent.click(searchButtons[1]);
+    expect(() => getByText("Fight Club")).toThrow();
   });
 
   it('should allow a user to search from the header search input', async () => {
@@ -61,10 +73,10 @@ describe("App", () => {
       </BrowserRouter>
     );
 
-    fireEvent.change(getByPlaceholderText('search...'), {
+    fireEvent.change(getByPlaceholderText("search..."), {
       target: { value: "pulp fiction" },
     });
-    const searchButtons = getAllByText("Search")
+    const searchButtons = getAllByText("Search");
     fireEvent.click(searchButtons[0]);
 
     await waitFor(() => getByText('Pulp Fiction'))
@@ -78,7 +90,7 @@ describe("App", () => {
       </MemoryRouter>
     );
 
-    fireEvent.change(getByPlaceholderText('Search for a title'), {
+    fireEvent.change(getByPlaceholderText("Search for a title"), {
       target: { value: "pulp fiction" },
     });
     fireEvent.click(getAllByText("Search")[1]);
@@ -95,12 +107,12 @@ describe("App", () => {
 
   it('should show a user details for a given item when they click on it', async () => {
     const { getByText, getByPlaceholderText, getAllByText } = render(
-      <BrowserRouter>
+      <MemoryRouter>
         <App />
-      </BrowserRouter>
+      </MemoryRouter>
     );
 
-    fireEvent.change(getByPlaceholderText('Search for a title'), {
+    fireEvent.change(getByPlaceholderText("Search for a title"), {
       target: { value: "pulp fiction" },
     });
 
@@ -121,13 +133,4 @@ describe("App", () => {
       { exact: false })
     ).toBeInTheDocument()
   })
-
-
-  //if search button is clicked and there is a search term, should find relevant search items
-  //mock fetch call  - pull it out into a different file
-  //maybe create test file of the similar {}
-  //mocked fetch call should return the copied data (similar {})
-
-  //if search button is clicked and there is a search term, should not find relevant search terms where none exist
 });
-

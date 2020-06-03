@@ -3,9 +3,9 @@
   height: calc(100vh - 80px);
 }
 
-.App>:nth-child(2) {
+/* .App>:nth-child(2) {
   margin-top: 80px;
-}
+} */
 
 .error {
   background: #c55;
