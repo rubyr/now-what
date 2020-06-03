@@ -30,7 +30,7 @@ const TitlePage: React.FC<Props> = (props: Props) => {
 
           if (imgUrl) setImg(imgUrl);
         } catch (e) {
-          console.error(e);
+          setImg("");
         }
 
         return data;
@@ -62,7 +62,10 @@ const TitlePage: React.FC<Props> = (props: Props) => {
               favorite={props.isFavorite(`${info[0].Type}:${info[0].Name}`)}
             />
           </section>
-          <img src={img} alt={info[0].Name} className="title-image" />
+          {img.length && (
+            <img src={img} alt={info[0].Name} className="title-image" />
+          )}
+          <figure className="title-image"></figure>
           <a href={info[0].yUrl} target="_blank" rel="noopener noreferrer">
             <img
               className="youtube-link"
@@ -79,7 +82,9 @@ const TitlePage: React.FC<Props> = (props: Props) => {
             </a>
           </p>
           <h3>Related Items</h3>
-          <section className="all-related-items">{allRelatedItems}</section>
+          <section className="all-related-items">
+            {results && allRelatedItems}
+          </section>
         </main>
       </section>
     );
