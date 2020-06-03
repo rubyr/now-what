@@ -8,6 +8,7 @@ import ResultsPage from "../ResultsPage/ResultsPage";
 import { findSimilar } from "../../apiCalls";
 import FavoritesList from "../FavoritesPage/FavoritesList";
 import TitlePage from "../TitlePage/TitlePage";
+import EditorsChoice from "../EditorsChoice/EditorsChoice";
 
 function App(): ReactElement {
   const [results, setResults] = useState<searchResult[]>([]);
@@ -58,8 +59,8 @@ function App(): ReactElement {
   };
 
   const clearResults = () => {
-    setResults([])
-  }
+    setResults([]);
+  };
   //how would I do this in react?
   //that's a good question lol
   //I'm just trying to get the component to even show up.
@@ -68,7 +69,7 @@ function App(): ReactElement {
 
   return (
     <main className="App">
-      <Header searchTerm={searchTerm} clearResults={clearResults}/>
+      <Header searchTerm={searchTerm} clearResults={clearResults} />
       {error && (
         <h3 className="error">
           We're sorry, but there seems to have been an issue. Please refresh the
@@ -109,11 +110,16 @@ function App(): ReactElement {
         <Route exact path="/">
           <SearchForm searchTerm={searchTerm} />
           {isLoading && <p>Finding matches...</p>}
-          {results.length !== 0 && (
+          {results.length !== 0 ? (
             <ResultsPage
               results={results}
               toggleFavorite={toggleFavorite}
               favorites={favorites}
+            />
+          ) : (
+            <EditorsChoice
+              toggleFavorite={toggleFavorite}
+              isFavorite={(id: string) => favorites.includes(id)}
             />
           )}
         </Route>

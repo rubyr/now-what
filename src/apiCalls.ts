@@ -1,4 +1,5 @@
 import wiki from "wikijs";
+import { searchResult } from "./types";
 
 export const findSimilar = async (term: string) => {
   const corsAnywhere: string = `https://cors-anywhere.herokuapp.com/`;
@@ -31,4 +32,37 @@ export const getWikiImage = async (wUrl: string) => {
     .page(page)
     .then((page) => page.mainImage());
   return url;
+};
+
+export const getEditorsChoice = async () => {
+  const choices = await fetch("/data/editors.json").then((r) => r.json());
+  let allMedia: string[] = [];
+  for (const titles of Object.values<string[]>(choices)) {
+    allMedia.push(...titles);
+  }
+
+  // function splits all the titles into separate arrays of length 11, the max the API can take
+  // it's dumb but so is this API
+  const splitMedia = allMedia.reduce(
+    (acc: string[][], m) => {
+      if (acc[acc.length - 1].push(m) > 10) {
+        acc.push([]);
+      }
+      return acc;
+    },
+    [[]]
+  );
+
+  const datas = await Promise.all(
+    splitMedia.map(async (mediaArray) => {
+      const media = mediaArray.join("%2C");
+
+      const corsAnywhere: string = `https://cors-anywhere.herokuapp.com/`;
+      const url = `${corsAnywhere}https://tastedive.com/api/similar?q=${media}&verbose=1&k=372838-DavePern-7J59GJ8D&limit=1`;
+
+      return fetch(url).then((r) => (r.ok ? r.json() : console.error(r)));
+    })
+  );
+
+  return datas.reduce((acc, things) => [...acc, ...things.Similar.Info], []);
 };
