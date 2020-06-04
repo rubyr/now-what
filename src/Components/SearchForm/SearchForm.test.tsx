@@ -12,7 +12,7 @@ describe("SearchForm", () => {
     const { getByPlaceholderText } = render(
       <SearchForm searchTerm={() => {}} />
     );
-    expect(getByPlaceholderText(/search/i)).toBeInTheDocument();
+    expect(getByPlaceholderText("ex: Frozen")).toBeInTheDocument();
   });
 
   it("should have a search button", () => {
@@ -24,7 +24,7 @@ describe("SearchForm", () => {
     const { getByPlaceholderText } = render(
       <SearchForm searchTerm={() => {}} />
     );
-    const input = getByPlaceholderText(/title/i);
+    const input = getByPlaceholderText("ex: Frozen");
     fireEvent.change(input, { target: { value: "Blade Runner" } });
     expect(input).toHaveValue("Blade Runner");
   });
@@ -34,7 +34,7 @@ describe("SearchForm", () => {
     const { getByPlaceholderText, getByText } = render(
       <SearchForm searchTerm={mockSearchTerm} />
     );
-    const input = getByPlaceholderText(/title/i);
+    const input = getByPlaceholderText("ex: Frozen");
     const button = getByText("Search");
     fireEvent.change(input, { target: { value: "Blade Runner" } });
     fireEvent.click(button);

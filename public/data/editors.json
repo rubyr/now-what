@@ -2,23 +2,29 @@
   "movies": [
     "movie:Blade Runner",
     "movie:Deadpool 2",
-    "movie:Ferris Bueller's Day Off"
+    "movie:Ferris Bueller's Day Off",
+    "movie:Toy Story", 
+    "movie:Get Out"
   ],
   "shows": [
     "show:Arrested Development",
     "show:Parks and Rec",
-    "show:Star Trek: The Next Generation"
+    "show:Star Trek: The Next Generation",
+    "show:The Office", 
+    "show:Insecure"
   ],
   "games": [
     "game:Rocket League",
     "game:Terraria",
     "game:Animal Crossing",
-    "game:Super Mario Odyssey"
+    "game:Super Mario Odyssey",
+    "game:The Sims"
   ],
   "music": [
     "music:Radiohead",
     "music:Tame Impala",
     "music:Daft Punk",
-    "music:Ben Folds"
+    "music:Ben Folds",
+    "music:Rihanna"
   ]
 }

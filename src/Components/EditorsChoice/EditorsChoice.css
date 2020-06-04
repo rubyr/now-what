@@ -15,12 +15,13 @@
   /* background-color: #C4C4C4; */
 }
 
-.editor-pick-seaction-header {
+.editor-pick-section-header {
   color: black;
   margin: 1%;
   font-family: "Avenir Next";
   width: 100%;
   text-align: left;
   font-size: 1.5rem;
+  text-transform: capitalize;
 
 }

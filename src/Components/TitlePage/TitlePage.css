@@ -61,6 +61,9 @@
 .title-image {
   height: 400px;
   margin-top: 10px;
+  width: auto;
+  max-width: 250px;
+  object-fit: contain;
 }
 
 .youtube-link {

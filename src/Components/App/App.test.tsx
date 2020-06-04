@@ -2,25 +2,38 @@ import React from "react";
 import { render, fireEvent, waitFor } from "@testing-library/react";
 import { BrowserRouter, MemoryRouter } from "react-router-dom";
 import App from "./App";
-import { fetchedData, favoritesData } from "./fetch-call-test";
-import { findSimilar, fetchFavorites, findTitleInfo, getWikiImage } from "../../apiCalls";
+import {
+  fetchedData,
+  favoritesData,
+  editorsChoiceData,
+} from "./fetch-call-test";
+import {
+  findSimilar,
+  fetchFavorites,
+  findTitleInfo,
+  getWikiImage,
+  getEditorsChoice,
+} from "../../apiCalls";
 import "@testing-library/jest-dom/extend-expect";
 import { mocked } from "ts-jest/utils";
-import { promises } from "dns";
 jest.mock("../../apiCalls");
 
 mocked(findSimilar).mockImplementation((term: string) =>
-      Promise.resolve(new Response(JSON.stringify(fetchedData)))
-    );
-    mocked(fetchFavorites).mockImplementation((favorites: string[]) =>
-      Promise.resolve(favoritesData)
-    );
-    mocked(getWikiImage).mockImplementation((title: string) => 
-      Promise.resolve("https://www.coolsite.com/this/is/not/a/url.png")
-    );
-    mocked(findTitleInfo).mockImplementation((term: string) =>
-      Promise.resolve(fetchedData)
-    );
+  Promise.resolve(new Response(JSON.stringify(fetchedData)))
+);
+mocked(fetchFavorites).mockImplementation((favorites: string[]) =>
+  Promise.resolve(favoritesData)
+);
+mocked(getWikiImage).mockImplementation((title: string) =>
+  Promise.resolve("https://www.coolsite.com/this/is/not/a/url.png")
+);
+mocked(findTitleInfo).mockImplementation((term: string) =>
+  Promise.resolve(fetchedData)
+);
+
+mocked(getEditorsChoice).mockImplementation(() =>
+  Promise.resolve(editorsChoiceData)
+);
 
 describe("App", () => {
   it("should render the App", () => {
@@ -40,7 +53,7 @@ describe("App", () => {
       </BrowserRouter>
     );
 
-    fireEvent.change(getByPlaceholderText(/title/i), {
+    fireEvent.change(getByPlaceholderText("ex: Frozen"), {
       target: { value: "pulp fiction" },
     });
     const searchButtons = getAllByText("Search");
@@ -58,7 +71,7 @@ describe("App", () => {
       </BrowserRouter>
     );
 
-    fireEvent.change(getByPlaceholderText(/title/i), {
+    fireEvent.change(getByPlaceholderText("ex: Frozen"), {
       target: { value: "" },
     });
     const searchButtons = getAllByText("Search");
@@ -66,7 +79,7 @@ describe("App", () => {
     expect(() => getByText("Fight Club")).toThrow();
   });
 
-  it('should allow a user to search from the header search input', async () => {
+  it("should allow a user to search from the header search input", async () => {
     const { getByText, getByPlaceholderText, getAllByText } = render(
       <BrowserRouter>
         <App />
@@ -79,58 +92,64 @@ describe("App", () => {
     const searchButtons = getAllByText("Search");
     fireEvent.click(searchButtons[0]);
 
-    await waitFor(() => getByText('Pulp Fiction'))
-    expect(getByText('Pulp Fiction')).toBeInTheDocument()
-  })
+    await waitFor(() => getByText("Pulp Fiction"));
+    expect(getByText("Pulp Fiction")).toBeInTheDocument();
+  });
 
-  it('should allow a user to favorite an item', async () => {
-    const { getByText, getByPlaceholderText, getAllByText, getAllByLabelText } = render(
+  it("should allow a user to favorite an item", async () => {
+    const {
+      getByText,
+      getByPlaceholderText,
+      getAllByText,
+      getAllByLabelText,
+    } = render(
       <MemoryRouter>
         <App />
       </MemoryRouter>
     );
 
-    fireEvent.change(getByPlaceholderText("Search for a title"), {
+    fireEvent.change(getByPlaceholderText("ex: Frozen"), {
       target: { value: "pulp fiction" },
     });
     fireEvent.click(getAllByText("Search")[1]);
 
-    await waitFor(() => getByText('Pulp Fiction'))
-    expect(getByText('Pulp Fiction')).toBeInTheDocument()
+    await waitFor(() => getByText("Pulp Fiction"));
+    expect(getByText("Pulp Fiction")).toBeInTheDocument();
 
-    fireEvent.click(getAllByLabelText("favorite")[0])
-    fireEvent.click(getByText("FAVORITES"))
-    
-    const pulp = await waitFor(() => getByText("Pulp Fiction"))  
-    expect(pulp).toBeInTheDocument()
-  })
+    fireEvent.click(getAllByLabelText("favorite")[0]);
+    fireEvent.click(getByText("FAVORITES"));
 
-  it('should show a user details for a given item when they click on it', async () => {
+    const pulp = await waitFor(() => getByText("Pulp Fiction"));
+    expect(pulp).toBeInTheDocument();
+  });
+
+  it("should show a user details for a given item when they click on it", async () => {
     const { getByText, getByPlaceholderText, getAllByText } = render(
       <MemoryRouter>
         <App />
       </MemoryRouter>
     );
 
-    fireEvent.change(getByPlaceholderText("Search for a title"), {
+    fireEvent.change(getByPlaceholderText("ex: Frozen"), {
       target: { value: "pulp fiction" },
     });
 
     fireEvent.click(getAllByText("Search")[1]);
 
-    const pf = await waitFor(() => getByText('Pulp Fiction'))
-    expect(pf).toBeInTheDocument()
-    
-    fireEvent.click(getByText('Pulp Fiction'))
+    await waitFor(() => expect(getByText("Pulp Fiction")).toBeInTheDocument());
 
-    const readMoreSignal = await waitFor(() => getByText('Read more...'))
-    expect(readMoreSignal).toBeInTheDocument()
+    fireEvent.click(getByText("Pulp Fiction"));
 
-    await waitFor(() => getByText('Pulp Fiction'));
+    const readMoreSignal = await waitFor(() => getByText("Read more..."));
+    expect(readMoreSignal).toBeInTheDocument();
 
-    expect(getByText(
-      "Pulp Fiction is a 1994 American crime film written and directed by Quentin Tarantino, who conceived it with Roger Avary", 
-      { exact: false })
-    ).toBeInTheDocument()
-  })
+    await waitFor(() => getByText("Pulp Fiction"));
+
+    expect(
+      getByText(
+        "Pulp Fiction is a 1994 American crime film written and directed by Quentin Tarantino, who conceived it with Roger Avary",
+        { exact: false }
+      )
+    ).toBeInTheDocument();
+  });
 });
