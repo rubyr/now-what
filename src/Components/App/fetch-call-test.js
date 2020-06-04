@@ -242,26 +242,94 @@ export const smallerfetchedData = {
   },
 };
 export const favoritesData = {
-  "Similar": {
-    "Info": [
+  Similar: {
+    Info: [
       {
-        "Name": "Pulp Fiction",
-        "Type": "movie",
-        "wTeaser": "Pulp Fiction is a 1994 American crime film written and directed by Quentin Tarantino, who conceived it with Roger Avary. Starring John Travolta, Samuel L. Jackson, Bruce Willis, Tim Roth, Ving Rhames, and Uma Thurman, it tells several stories of criminal Los Angeles. The title refers to the pulp magazines and hardboiled crime novels popular during the mid-20th century, known for their graphic violence and punchy dialogue.Tarantino wrote Pulp Fiction in 1992 and 1993, incorporating scenes that Avary originally wrote for True Romance (1993). Its plot occurs out of chronological order. The film is also self-referential from its opening moments, beginning with a title card that gives two dictionary definitions of \"pulp\". Considerable screen time is devoted to monologues and casual conversations with eclectic dialogue revealing each character's perspectives on several subjects, and the film features an ironic combination of humor and strong violence. TriStar Pictures reportedly turned down the script as \"too demented\". Miramax co-chairman Harvey Weinstein was enthralled, however, and the film became the first that Miramax fully financed.",
-        "wUrl": "http://en.wikipedia.org/wiki/Pulp_Fiction_(movie)",
-        "yUrl": "https://www.youtube-nocookie.com/embed/s7EdQ4FqbhY",
-        "yID": "s7EdQ4FqbhY"
-      }
+        Name: "Pulp Fiction",
+        Type: "movie",
+        wTeaser:
+          'Pulp Fiction is a 1994 American crime film written and directed by Quentin Tarantino, who conceived it with Roger Avary. Starring John Travolta, Samuel L. Jackson, Bruce Willis, Tim Roth, Ving Rhames, and Uma Thurman, it tells several stories of criminal Los Angeles. The title refers to the pulp magazines and hardboiled crime novels popular during the mid-20th century, known for their graphic violence and punchy dialogue.Tarantino wrote Pulp Fiction in 1992 and 1993, incorporating scenes that Avary originally wrote for True Romance (1993). Its plot occurs out of chronological order. The film is also self-referential from its opening moments, beginning with a title card that gives two dictionary definitions of "pulp". Considerable screen time is devoted to monologues and casual conversations with eclectic dialogue revealing each character\'s perspectives on several subjects, and the film features an ironic combination of humor and strong violence. TriStar Pictures reportedly turned down the script as "too demented". Miramax co-chairman Harvey Weinstein was enthralled, however, and the film became the first that Miramax fully financed.',
+        wUrl: "http://en.wikipedia.org/wiki/Pulp_Fiction_(movie)",
+        yUrl: "https://www.youtube-nocookie.com/embed/s7EdQ4FqbhY",
+        yID: "s7EdQ4FqbhY",
+      },
     ],
-    "Results": [
+    Results: [
       {
-        "Name": "Fight Club",
-        "Type": "movie",
-        "wTeaser": "Fight Club is a 1999 American film directed by David Fincher and starring Brad Pitt, Edward Norton, and Helena Bonham Carter. It is based on the 1996 novel of the same name by Chuck Palahniuk. Norton plays the unnamed narrator, who is discontented with his white-collar job. He forms a \"fight club\" with soap salesman Tyler Durden (Pitt), and becomes embroiled in a relationship with him and a destitute woman, Marla Singer (Bonham Carter).Palahniuk's novel was optioned by Fox 2000 Pictures producer Laura Ziskin, who hired Jim Uhls to write the film adaptation. Fincher was selected because of his enthusiasm for the story. He developed the script with Uhls and sought screenwriting advice from the cast and others in the film industry. He and the cast compared the film to Rebel Without a Cause (1955) and The Graduate (1967), with a theme of conflict between Generation X and the value system of advertising.",
-        "wUrl": "http://en.wikipedia.org/wiki/Fight_Club_(film)",
-        "yUrl": "https://www.youtube-nocookie.com/embed/qtRKdVHc-cE",
-        "yID": "qtRKdVHc-cE"
-      }
-    ]
-  }
-}
+        Name: "Fight Club",
+        Type: "movie",
+        wTeaser:
+          'Fight Club is a 1999 American film directed by David Fincher and starring Brad Pitt, Edward Norton, and Helena Bonham Carter. It is based on the 1996 novel of the same name by Chuck Palahniuk. Norton plays the unnamed narrator, who is discontented with his white-collar job. He forms a "fight club" with soap salesman Tyler Durden (Pitt), and becomes embroiled in a relationship with him and a destitute woman, Marla Singer (Bonham Carter).Palahniuk\'s novel was optioned by Fox 2000 Pictures producer Laura Ziskin, who hired Jim Uhls to write the film adaptation. Fincher was selected because of his enthusiasm for the story. He developed the script with Uhls and sought screenwriting advice from the cast and others in the film industry. He and the cast compared the film to Rebel Without a Cause (1955) and The Graduate (1967), with a theme of conflict between Generation X and the value system of advertising.',
+        wUrl: "http://en.wikipedia.org/wiki/Fight_Club_(film)",
+        yUrl: "https://www.youtube-nocookie.com/embed/qtRKdVHc-cE",
+        yID: "qtRKdVHc-cE",
+      },
+    ],
+  },
+};
+
+export const editorsChoiceData = [
+  {
+    Name: "Pulp Fiction",
+    Type: "movie",
+    wTeaser:
+      'Pulp Fiction is a 1994 American crime film written and directed by Quentin Tarantino, who conceived it with Roger Avary. Starring John Travolta, Samuel L. Jackson, Bruce Willis, Tim Roth, Ving Rhames, and Uma Thurman, it tells several stories of criminal Los Angeles. The title refers to the pulp magazines and hardboiled crime novels popular during the mid-20th century, known for their graphic violence and punchy dialogue.Tarantino wrote Pulp Fiction in 1992 and 1993, incorporating scenes that Avary originally wrote for True Romance (1993). Its plot occurs out of chronological order. The film is also self-referential from its opening moments, beginning with a title card that gives two dictionary definitions of "pulp". Considerable screen time is devoted to monologues and casual conversations with eclectic dialogue revealing each character\'s perspectives on several subjects, and the film features an ironic combination of humor and strong violence. TriStar Pictures reportedly turned down the script as "too demented". Miramax co-chairman Harvey Weinstein was enthralled, however, and the film became the first that Miramax fully financed.',
+    wUrl: "http://en.wikipedia.org/wiki/Pulp_Fiction_(movie)",
+    yUrl: "https://www.youtube-nocookie.com/embed/s7EdQ4FqbhY",
+    yID: "s7EdQ4FqbhY",
+  },
+  {
+    Name: "Fight Club",
+    Type: "movie",
+    wTeaser:
+      'Fight Club is a 1999 American film directed by David Fincher and starring Brad Pitt, Edward Norton, and Helena Bonham Carter. It is based on the 1996 novel of the same name by Chuck Palahniuk. Norton plays the unnamed narrator, who is discontented with his white-collar job. He forms a "fight club" with soap salesman Tyler Durden (Pitt), and becomes embroiled in a relationship with him and a destitute woman, Marla Singer (Bonham Carter).Palahniuk\'s novel was optioned by Fox 2000 Pictures producer Laura Ziskin, who hired Jim Uhls to write the film adaptation. Fincher was selected because of his enthusiasm for the story. He developed the script with Uhls and sought screenwriting advice from the cast and others in the film industry. He and the cast compared the film to Rebel Without a Cause (1955) and The Graduate (1967), with a theme of conflict between Generation X and the value system of advertising.',
+    wUrl: "http://en.wikipedia.org/wiki/Fight_Club_(film)",
+    yUrl: "https://www.youtube-nocookie.com/embed/qtRKdVHc-cE",
+    yID: "qtRKdVHc-cE",
+  },
+  {
+    Name: "Inglourious Basterds",
+    Type: "movie",
+    wTeaser:
+      "Inglourious Basterds is a 2009 war film written and directed by Quentin Tarantino and starring Brad Pitt, Christoph Waltz, Michael Fassbender, Eli Roth, Diane Kruger, Daniel Brühl, Til Schweiger and Mélanie Laurent. The film tells an alternate history story of two plots to assassinate Nazi Germany's leadership, one planned by Shosanna Dreyfus (Laurent), a young French Jewish cinema proprietor, and the other by a team of Jewish American soldiers led by First Lieutenant Aldo Raine (Pitt). Christoph Waltz co-stars as Hans Landa, an SS colonel tracking down Raine's group and who is connected to Shosanna's past. The film's title was inspired by Italian director Enzo G. Castellari's macaroni combat film The Inglorious Bastards (1978).",
+    wUrl: "https://en.wikipedia.org/wiki/Inglourious_Basterds",
+    yUrl: "https://www.youtube-nocookie.com/embed/KnrRy6kSFF0",
+    yID: "KnrRy6kSFF0",
+  },
+  {
+    Name: "The Silence Of The Lambs",
+    Type: "movie",
+    wTeaser:
+      "The Silence of the Lambs is a 1991 American psychological horror film directed by Jonathan Demme from a screenplay written by Ted Tally, adapted from Thomas Harris's 1988 novel of the same name. The film stars Jodie Foster, Anthony Hopkins, Scott Glenn, Ted Levine, and Anthony Heald. In the film, Clarice Starling, a young FBI trainee, seeks the advice of the imprisoned Dr. Hannibal Lecter, a brilliant psychiatrist and cannibalistic serial killer to apprehend another serial killer, known only as \"Buffalo Bill\", who skins his female victims' corpses. The novel was Harris's first and second respectively to feature the characters of Starling and Lecter, and was the second adaptation of a Harris novel to feature Lecter, preceded by the Michael Mann-directed Manhunter (1986).",
+    wUrl: "http://en.wikipedia.org/wiki/The_Silence_of_the_Lambs_(film)",
+    yUrl: "https://www.youtube-nocookie.com/embed/W6Mm8Sbe__o",
+    yID: "W6Mm8Sbe__o",
+  },
+  {
+    Name: "A",
+    Type: "movie",
+    wTeaser:
+      "A Movie (styled as A MOVIE) is a 1958 experimental collage film by American artist Bruce Conner. It combines pieces of found footage taken from various sources such as newsreels, soft-core pornography, and B movies, all set to a score featuring Ottorino Respighi's Pines of Rome.The film is recognized as a landmark work in American experimental cinema, particularly as an early example of found footage. A Movie was inducted into the National Film Registry in 1994.A Movie opens with its longest shot, an extended production credit with Bruce Conner's name. After the opening credits, the countdown leader is interrupted by a shot of an undressed woman removing her stockings. Once the countdown completes, an intertitle falsely announces \"The End\" of the film. The film moves into a montage of cavalry, tanks, race cars, and a charging elephant.",
+    wUrl: "http://en.wikipedia.org/wiki/A_Movie",
+    yUrl: "https://www.youtube-nocookie.com/embed/Yy-TwYB1UQw",
+    yID: "Yy-TwYB1UQw",
+  },
+  {
+    Name: "Reservoir Dogs",
+    Type: "movie",
+    wTeaser:
+      "Reservoir Dogs is a 1992 American independent crime film written and directed by Quentin Tarantino in his feature-length debut. It stars Harvey Keitel, Tim Roth, Chris Penn, Steve Buscemi, Lawrence Tierney, Michael Madsen, Tarantino, and Edward Bunker, as diamond thieves whose planned heist of a jewelry store goes terribly wrong. The film depicts the events before and after the heist. Kirk Baltz, Randy Brooks and Steven Wright also play supporting roles. It incorporates many motifs that have become Tarantino's hallmarks: violent crime, pop culture references, profanity, and nonlinear storytelling.The film is regarded as a classic of independent film and a cult film, and was named \"Greatest Independent Film of all Time\" by Empire. Although controversial for its depictions of violence and use of profanity, Reservoir Dogs was generally well received, with the cast being praised by many critics. Despite not being heavily promoted during its theatrical run, the film became a modest success in the United States after grossing $2.8 million against its $1.2 million budget, and was more successful in the United Kingdom, grossing nearly £6.5 million. It achieved higher popularity after the success of Tarantino's next film, Pulp Fiction (1994). A soundtrack was released featuring songs used in the film, which are mostly from the 1970s.",
+    wUrl: "http://en.wikipedia.org/wiki/Reservoir_Dogs",
+    yUrl: "https://www.youtube-nocookie.com/embed/vayksn4Y93A",
+    yID: "vayksn4Y93A",
+  },
+  {
+    Name: "The Usual Suspects",
+    Type: "movie",
+    wTeaser:
+      'The Usual Suspects is a 1995 neo-noir mystery film directed by Bryan Singer and written by Christopher McQuarrie. It stars Stephen Baldwin, Gabriel Byrne, Benicio del Toro, Kevin Pollak, Chazz Palminteri, Pete Postlethwaite, and Kevin Spacey.The plot follows the interrogation of Roger "Verbal" Kint, a small-time con man, who is one of only two survivors of a massacre and fire on a ship docked at the Port of Los Angeles. Through flashback and narration, Kint tells an interrogator a convoluted story of events that led him and his criminal companions to the boat, and of a mysterious crime lord—known as Keyser Söze—who controlled them. The film was shot on a $6 million budget and began as a title taken from a column in Spy magazine called The Usual Suspects, after one of Claude Rains\' most memorable lines in the classic film Casablanca, and Singer thought that it would make a good title for a film.',
+    wUrl: "http://en.wikipedia.org/wiki/The_Usual_Suspects",
+    yUrl: "https://www.youtube-nocookie.com/embed/oiXdPolca5w",
+    yID: "oiXdPolca5w",
+  },
+];

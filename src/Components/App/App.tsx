@@ -17,7 +17,6 @@ function App(): ReactElement {
   const [favorites, setFavorites] = useState<string[]>([]);
 
   useEffect(() => {
-    // load favorites on startup
     const lsFaves = localStorage.getItem("favorites");
     if (lsFaves) {
       setFavorites(JSON.parse(lsFaves));
@@ -25,7 +24,6 @@ function App(): ReactElement {
   }, []);
 
   useEffect(() => {
-    // save favorites when updated
     localStorage.setItem("favorites", JSON.stringify(favorites));
   }, [favorites]);
 
@@ -35,15 +33,8 @@ function App(): ReactElement {
   };
 
   const searchTerm = async (searchTerm: string) => {
-    //needs to do a fetch call based on the search term and console log results
     setError(null);
     setIsLoading(true);
-    // const corsAnywhere: string = `https://cors-anywhere.herokuapp.com/`;
-    // const modifiedSearchTerm: string = searchTerm.split(" ").join("+");
-    // const url = `${corsAnywhere}https://tastedive.com/api/similar?q=${modifiedSearchTerm}&verbose=1&k=372838-DavePern-7J59GJ8D&limit=5`;
-
-    // const data = await fetch(url)
-    // let data = await apiCalls(searchTerm);
     findSimilar(searchTerm)
       .then((response) =>
         response.ok ? response.json() : setError(response.status)
@@ -61,11 +52,6 @@ function App(): ReactElement {
   const clearResults = () => {
     setResults([]);
   };
-  //how would I do this in react?
-  //that's a good question lol
-  //I'm just trying to get the component to even show up.
-  //I would probably use match params somehow to connect the current URL with the actual url
-  //could find the name that in the app state that actually matches the current url
 
   return (
     <main className="App">
@@ -88,13 +74,6 @@ function App(): ReactElement {
           path="/title/:name"
           render={({ match }) => {
             const { name } = match.params;
-            //everything in here is making this run twice. Why?
-            // const regularName = name.split("+").join(" ");
-            // const matchedName: searchResult | any = results.find((result) =>
-            //   result.Name.includes(regularName)
-            // );
-            // console.log(matchedName);
-            // console.log(results, isLoading, error, favorites)
             return (
               <TitlePage
                 url={name}
@@ -102,9 +81,6 @@ function App(): ReactElement {
                 isFavorite={(id: string) => favorites.includes(id)}
               />
             );
-
-            // may need to keep matchedName and just tweak it
-            //
           }}
         ></Route>
         <Route exact path="/">

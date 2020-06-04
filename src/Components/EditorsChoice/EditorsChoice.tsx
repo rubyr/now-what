@@ -27,8 +27,10 @@ const EditorsChoice = (props: Props) => {
   const types = ["movie", "show", "game", "music"];
 
   const results = types.map((type) => (
-    <div className="editor-pick-section">
-      <h3 className="editor-pick-seaction-header">Editor's Picks: {type + "s"}</h3>
+    <div className="editor-pick-section" key={type}>
+      <h3 className="editor-pick-section-header">
+        Editor's Picks: {type !== 'music'? type + "s" : 'artists'}
+      </h3>
       {getTitlesOfType(type).map((t) => (
         <Result
           data={t}

@@ -1,5 +1,4 @@
 import wiki from "wikijs";
-import { searchResult } from "./types";
 
 export const findSimilar = async (term: string) => {
   const corsAnywhere: string = `https://cors-anywhere.herokuapp.com/`;
@@ -40,9 +39,6 @@ export const getEditorsChoice = async () => {
   for (const titles of Object.values<string[]>(choices)) {
     allMedia.push(...titles);
   }
-
-  // function splits all the titles into separate arrays of length 11, the max the API can take
-  // it's dumb but so is this API
   const splitMedia = allMedia.reduce(
     (acc: string[][], m) => {
       if (acc[acc.length - 1].push(m) > 10) {

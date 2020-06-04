@@ -1,7 +1,6 @@
 import React, { useState, ReactElement, SyntheticEvent } from "react";
 import "./Header.css";
 import { Link } from "react-router-dom";
-import { isPropertySignature } from "typescript";
 
 interface Props {
   searchTerm: (term: string) => void;
@@ -57,6 +56,8 @@ const Header: React.FC<Props> = (props: Props): ReactElement => {
         <img
           src="/images/search.svg"
           alt="search"
+          tabIndex={0}
+          role="button"
           onClick={() => updateShowSearch(!showSearch)}
         />
       </section>
