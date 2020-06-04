@@ -15,3 +15,8 @@ Now What is built with React using TypeScript. It also utlizes React Hooks, loca
 * December Garnet-Smith
 * Ruby Rinken
 * Dave Pernitz
+​
+## Screenshots
+![now-what-1](https://user-images.githubusercontent.com/23513486/83702772-d5f80700-a5ca-11ea-9cb3-b092d9f67676.gif)
+![now-what-2](https://user-images.githubusercontent.com/23513486/83702782-ddb7ab80-a5ca-11ea-919b-9fb90adde7f3.gif)
+![now-what-3](https://user-images.githubusercontent.com/23513486/83702789-df816f00-a5ca-11ea-9d15-9926744c67e6.gif)
