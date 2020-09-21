@@ -33,7 +33,13 @@ export const getWikiImage = async (wUrl: string) => {
 };
 
 export const getEditorsChoice = async () => {
-  const choices = await fetch("/data/editors.json").then((r) => r.json());
+  const choices = await fetch("/data/editors.json")
+    .then((r) => r.json())
+    .catch(() =>
+      fetch(
+        "https://raw.githubusercontent.com/rubyr/now-what/master/public/data/editors.json"
+      ).then((d) => d.json())
+    );
   let allMedia: string[] = [];
   for (const titles of Object.values<string[]>(choices)) {
     allMedia.push(...titles);
