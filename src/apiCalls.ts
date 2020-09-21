@@ -1,4 +1,5 @@
-import wiki from "wikijs";
+import Wiki from "wikijs";
+const wiki = Wiki({ apiUrl: "https://en.wikipedia.org/w/api.php" });
 
 export const findSimilar = async (term: string) => {
   const corsAnywhere: string = `https://cors-anywhere.herokuapp.com/`;
@@ -27,9 +28,7 @@ export const fetchFavorites = async (favorites: string[]) => {
 
 export const getWikiImage = async (wUrl: string) => {
   const page = decodeURI(wUrl.split("/").pop() as string);
-  const url = await wiki()
-    .page(page)
-    .then((page) => page.mainImage());
+  const url = await wiki.page(page).then((page) => page.mainImage());
   return url;
 };
 
