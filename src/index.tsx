@@ -5,7 +5,7 @@ import "./index.css";
 import App from "./Components/App/App";
 
 ReactDOM.render(
-  <BrowserRouter>
+  <BrowserRouter basename="https://rubyr.github.io/now-what">
     <App />
   </BrowserRouter>,
   document.getElementById("root")
