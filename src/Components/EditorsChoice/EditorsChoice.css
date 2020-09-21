@@ -3,7 +3,7 @@
   flex-wrap: wrap;
   overflow: scroll;
   margin: 1% 2%;
-  background-color: #C4C4C4;
+  background-color: #c4c4c4;
   border-radius: 5px;
 }
 
@@ -18,10 +18,9 @@
 .editor-pick-section-header {
   color: black;
   margin: 1%;
-  font-family: "Avenir Next";
+  font-family: "Avenir Next", sans-serif;
   width: 100%;
   text-align: left;
   font-size: 1.5rem;
   text-transform: capitalize;
-
 }

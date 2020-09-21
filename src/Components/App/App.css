@@ -1,6 +1,5 @@
 .App {
   text-align: center;
-  height: calc(100vh - 80px);
 }
 
 /* .App>:nth-child(2) {
